@@ -327,6 +327,15 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
             ),
           ),
         ),
+        // The reclassify bar — this is how mis-reads AND freestyle rounds
+        // get corrected: tap any row to flip planned ↔ unplanned.
+        Container(
+          width: double.infinity,
+          color: NewsInk.mustard,
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 5),
+          child: Text('TAP ANY ROW TO SWITCH PLANNED ↔ UNPLANNED',
+              style: News.kicker(10)),
+        ),
         Expanded(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(18, 12, 18, 12),
@@ -345,53 +354,66 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
               for (final (i, p) in game.parsedRows.indexed)
                 PrintIn(
                   index: i,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 9),
-                    decoration: const BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(
-                              color: NewsInk.ruleDark,
-                              width: 1,
-                              style: BorderStyle.solid)),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(p.raw,
-                                style: News.mono(13,
-                                    weight: FontWeight.w700)),
-                            Text(money(p.price),
-                                style: News.mono(13,
-                                    weight: FontWeight.w700)),
-                          ],
-                        ),
-                        const SizedBox(height: 3),
-                        Row(
-                          mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text('→ ${p.full}',
-                                  style: News.mono(11, color: NewsInk.gray)),
-                            ),
-                            Text(
-                                p.impulse
-                                    ? 'IMPULSE'
-                                    : '${p.confidence}%',
-                                style: News.mono(10,
-                                    weight: FontWeight.w700,
-                                    color: p.impulse
-                                        ? NewsInk.red
-                                        : p.confidence >= 92
-                                            ? NewsInk.green
-                                            : NewsInk.red)),
-                          ],
-                        ),
-                      ],
+                  child: GestureDetector(
+                    onTap: () => ctrl.toggleParsedRow(i),
+                    behavior: HitTestBehavior.opaque,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 9),
+                      decoration: const BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: NewsInk.ruleDark,
+                                width: 1,
+                                style: BorderStyle.solid)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(p.raw,
+                                  style: News.mono(13,
+                                      weight: FontWeight.w700)),
+                              Text(money(p.price),
+                                  style: News.mono(13,
+                                      weight: FontWeight.w700)),
+                            ],
+                          ),
+                          const SizedBox(height: 3),
+                          Row(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text('→ ${p.full}',
+                                    style:
+                                        News.mono(11, color: NewsInk.gray)),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 6, vertical: 1),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: p.impulse
+                                          ? NewsInk.red
+                                          : NewsInk.green,
+                                      width: 1.5),
+                                ),
+                                child: Text(
+                                    p.impulse ? 'UNPLANNED' : 'PLANNED',
+                                    style: News.mono(9,
+                                        weight: FontWeight.w700,
+                                        spacing: 1,
+                                        color: p.impulse
+                                            ? NewsInk.red
+                                            : NewsInk.green)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

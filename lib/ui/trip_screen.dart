@@ -161,6 +161,15 @@ class TripScreen extends ConsumerWidget {
                 ],
               ),
               const SizedBox(height: 6),
+              if (listItems.isEmpty)
+                PaperCard(
+                  child: Text(
+                    'Freestyle round — no list. Shop, scan the receipt at '
+                    'checkout, then tap each item to mark it planned or '
+                    'unplanned. The unplanned ones make the paper.',
+                    style: News.mono(11, color: NewsInk.gray, height: 1.5),
+                  ),
+                ),
               for (final it in listItems)
                 _ListRow(
                   name: it.rawText,

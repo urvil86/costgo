@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dictate list items instead of typing them. Audio is processed by the system speech recognizer and never stored by Cost-Go.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Turns your spoken list items into text.</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSCameraUsageDescription</key>

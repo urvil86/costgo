@@ -5,6 +5,7 @@ library;
 import 'package:drift/drift.dart' as drift;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 import '../core/theme/news_theme.dart';
 import '../core/utils/fuzzy_match.dart';
@@ -25,13 +26,55 @@ class _ListTabState extends ConsumerState<ListTab> {
   final _name = TextEditingController();
   final _price = TextEditingController();
   final _nameFocus = FocusNode();
+  final _speech = SpeechToText();
+  bool _listening = false;
 
   @override
   void dispose() {
+    _speech.cancel();
     _name.dispose();
     _price.dispose();
     _nameFocus.dispose();
     super.dispose();
+  }
+
+  Future<void> _dictate() async {
+    if (_listening) {
+      await _speech.stop();
+      setState(() => _listening = false);
+      return;
+    }
+    final available = await _speech.initialize(
+      onStatus: (status) {
+        if (status == 'done' || status == 'notListening') {
+          if (mounted) setState(() => _listening = false);
+        }
+      },
+      onError: (_) {
+        if (mounted) setState(() => _listening = false);
+      },
+    );
+    if (!available) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: NewsInk.black,
+        shape: const RoundedRectangleBorder(),
+        content: Text('Dictation unavailable on this device — keyboard it is.',
+            style: News.mono(12, color: NewsInk.paper)),
+      ));
+      return;
+    }
+    setState(() => _listening = true);
+    await _speech.listen(
+      listenOptions: SpeechListenOptions(
+          partialResults: true, listenFor: const Duration(seconds: 8)),
+      onResult: (result) {
+        _name.text = result.recognizedWords;
+        if (result.finalResult && mounted) {
+          setState(() => _listening = false);
+        }
+      },
+    );
   }
 
   Future<void> _add() async {
@@ -157,7 +200,21 @@ class _ListTabState extends ConsumerState<ListTab> {
                       focusNode: _nameFocus,
                       style: News.mono(13),
                       textInputAction: TextInputAction.next,
-                      decoration: deco('e.g. paper towels'),
+                      decoration: deco('e.g. paper towels').copyWith(
+                        suffixIcon: GestureDetector(
+                          onTap: _dictate,
+                          child: Icon(
+                            _listening
+                                ? Icons.mic_rounded
+                                : Icons.mic_none_rounded,
+                            size: 20,
+                            color:
+                                _listening ? NewsInk.red : NewsInk.gray,
+                          ),
+                        ),
+                        suffixIconConstraints: const BoxConstraints(
+                            minWidth: 36, minHeight: 36),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 8),
@@ -270,29 +327,26 @@ class _ListTabState extends ConsumerState<ListTab> {
           child: SizedBox(
             width: double.infinity,
             child: InkButton(
-              onTap: items.isEmpty
-                  ? null
-                  : () => ref.read(gameProvider.notifier).goStartTrip(),
-              color: items.isEmpty ? NewsInk.ruleDark : NewsInk.red,
+              onTap: () => ref.read(gameProvider.notifier).goStartTrip(),
+              color: NewsInk.red,
               pressedColor: NewsInk.redDark,
               padding: const EdgeInsets.symmetric(vertical: 16),
               child: Column(
                 children: [
                   Text(
                     items.isEmpty
-                        ? 'ADD ITEMS TO START A TRIP'
+                        ? 'NO LIST — FREESTYLE TRIP'
                         : "I'M AT COSTCO — LET'S GO",
                     style: News.anton(17,
-                        color:
-                            items.isEmpty ? NewsInk.gray : NewsInk.paper,
-                        spacing: 1.5),
+                        color: NewsInk.paper, spacing: 1.5),
                   ),
-                  if (items.isNotEmpty)
-                    Text(
-                        '${items.length} ITEMS · SCORED AS '
-                        '${settings.sport.label}',
-                        style: News.mono(9,
-                            color: NewsInk.paper, spacing: 1)),
+                  Text(
+                      items.isEmpty
+                          ? 'SCAN THE RECEIPT, THEN MARK WHAT WAS PLANNED'
+                          : '${items.length} ITEMS · SCORED AS '
+                              '${settings.sport.label}',
+                      style:
+                          News.mono(9, color: NewsInk.paper, spacing: 1)),
                 ],
               ),
             ),

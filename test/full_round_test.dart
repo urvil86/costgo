@@ -13,6 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:cartgolf/core/utils/fuzzy_match.dart';
 import 'package:cartgolf/data/db/database.dart';
+import 'package:cartgolf/features/matching/alias_dictionary.dart';
 import 'package:cartgolf/features/roasts/frank.dart';
 import 'package:cartgolf/game/game_controller.dart';
 import 'package:cartgolf/main.dart';
@@ -60,6 +61,7 @@ Future<void> pumpFrames(WidgetTester tester,
 Future<AppDatabase> _seededDb({
   bool onboarded = true,
   String sport = 'football',
+  bool withList = true,
 }) async {
   final db = AppDatabase.forTesting(NativeDatabase.memory());
   for (final e in {
@@ -71,6 +73,7 @@ Future<AppDatabase> _seededDb({
     await db.into(db.keyValueSettings).insert(
         KeyValueSettingsCompanion.insert(key: e.key, value: e.value));
   }
+  if (!withList) return db;
   for (final (name, price) in [('eggs', 7.99), ('paper towels', 21.99)]) {
     await db.into(db.listItems).insert(ListItemsCompanion.insert(
           rawText: name,
@@ -87,6 +90,8 @@ Future<void> _pumpApp(WidgetTester tester, AppDatabase db) async {
       overrides: [
         databaseProvider.overrideWithValue(db),
         temptationsDeckProvider.overrideWith((ref) async => _testDeck),
+        aliasDictionaryProvider.overrideWith(
+            (ref) async => AliasDictionary(AliasDictionary.defaultSeed)),
       ],
       child: const CostGoApp(),
     ),
@@ -188,7 +193,7 @@ void main() {
     await tester.tap(find.text('NO RECEIPT — SCORE THE CART AS TRACKED'));
     await pumpFrames(tester);
     expect(find.text('YOUR RECEIPT, DECODED'), findsOneWidget);
-    expect(find.text('IMPULSE'), findsOneWidget);
+    expect(find.text('UNPLANNED'), findsOneWidget);
 
     // Step 4: judgment.
     await tester.tap(find.text('CONFIRM & FACE JUDGMENT'));
@@ -242,6 +247,61 @@ void main() {
 
     expect(find.text("I'M AT COSTCO — LET'S GO"), findsOneWidget);
     expect(await (db.select(db.ledgerEntries)).get(), isEmpty);
+
+    await _drainTimers(tester);
+  });
+
+  testWidgets('freestyle: no list, paste receipt, tap to mark planned',
+      (tester) async {
+    final db = await _seededDb(withList: false);
+    await _pumpApp(tester, db);
+
+    // Empty list → the CTA offers a freestyle trip instead of a dead end.
+    await tester.tap(find.text('THE LIST'));
+    await pumpFrames(tester, 3);
+    expect(find.text('NO LIST — FREESTYLE TRIP'), findsOneWidget);
+    await tester.tap(find.text('NO LIST — FREESTYLE TRIP'));
+    await pumpFrames(tester);
+    expect(find.textContaining('FREESTYLE ROUND'), findsOneWidget);
+
+    await tester.tap(find.text('🏈 KICKOFF'));
+    await pumpFrames(tester);
+    expect(find.textContaining('Freestyle round — no list'), findsOneWidget);
+
+    await tester.tap(find.text('CHECKOUT → SCAN RECEIPT'));
+    await pumpFrames(tester);
+
+    // Paste a real receipt through the actual parser.
+    await tester.tap(find.text('PASTE RECEIPT TEXT'));
+    await pumpFrames(tester, 3);
+    await tester.enterText(
+      find.descendant(
+          of: find.byType(AlertDialog), matching: find.byType(TextField)),
+      '96716 KS ORG PNT BTR 9.99\n'
+      '1648955 KS PAPER TWL 21.99\n'
+      'SUBTOTAL 31.98\n'
+      '**** TOTAL 31.98',
+    );
+    await tester.tap(find.text('PARSE IT'));
+    await pumpFrames(tester);
+
+    // Everything arrives unplanned; one tap reclassifies.
+    expect(find.text('UNPLANNED'), findsNWidgets(2));
+    await tester.tap(find.text('KS ORG PNT BTR'));
+    await pumpFrames(tester, 2);
+    expect(find.text('PLANNED'), findsOneWidget);
+    expect(find.text('UNPLANNED'), findsOneWidget);
+
+    await tester.tap(find.text('CONFIRM & FACE JUDGMENT'));
+    await pumpFrames(tester);
+    await tester.tap(find.text('SIGN CARD'));
+    await pumpFrames(tester);
+
+    final entry = await (db.select(db.ledgerEntries)).getSingle();
+    // $31.98 against $150 → 118 under → best tier, football wording.
+    expect(entry.verdictName, 'TOUCHDOWN');
+    // Only the still-unplanned paper towels count as impulse damage.
+    expect(entry.impulseDollars, closeTo(21.99, 0.001));
 
     await _drainTimers(tester);
   });

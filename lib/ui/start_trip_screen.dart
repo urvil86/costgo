@@ -82,8 +82,12 @@ class StartTripScreen extends ConsumerWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                            'YOUR LIST ADDS UP TO \$${money(listTotal)} — '
-                            'LEAVE HEADROOM OR LIVE DANGEROUSLY.',
+                            items.isEmpty
+                                ? 'NO LIST — FREESTYLE ROUND. THE RECEIPT '
+                                    'DECIDES; YOU MARK WHAT WAS PLANNED.'
+                                : 'YOUR LIST ADDS UP TO '
+                                    '\$${money(listTotal)} — LEAVE HEADROOM '
+                                    'OR LIVE DANGEROUSLY.',
                             style: News.mono(10,
                                 color: NewsInk.gray, spacing: 0.5)),
                         const SizedBox(height: 8),

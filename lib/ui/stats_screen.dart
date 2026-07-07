@@ -22,6 +22,9 @@ class StatsScreen extends ConsumerWidget {
     final sport = settings.sport;
 
     final seasonTotal = ledger.fold(0.0, (s, e) => s + e.total).round();
+    final impulseDollars =
+        ledger.fold(0.0, (s, e) => s + e.impulseDollars);
+    final combos = (impulseDollars / 1.5).floor();
     final maxStrokes = ledger.isEmpty
         ? 1
         : ledger.map((e) => e.strokes.abs()).reduce(max).clamp(1, 99);
@@ -91,6 +94,24 @@ class StatsScreen extends ConsumerWidget {
             ),
           ],
         ),
+        if (impulseDollars > 0) ...[
+          const SizedBox(height: 12),
+          Container(
+            color: NewsInk.black,
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Text(
+              'LIFETIME IMPULSE: \$${impulseDollars.toStringAsFixed(0)} — '
+              'THAT\'S $combos HOT DOG COMBO${combos == 1 ? '' : 'S'}. '
+              'THE COMBO NEVER COUNTS. THIS DOES.',
+              style: News.mono(9,
+                  color: NewsInk.mustard,
+                  weight: FontWeight.w700,
+                  spacing: 0.5,
+                  height: 1.5),
+            ),
+          ),
+        ],
         const SizedBox(height: 18),
         Text(sport.chartLabel, style: News.kicker(10)),
         const SizedBox(height: 8),

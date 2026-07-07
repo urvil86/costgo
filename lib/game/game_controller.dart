@@ -482,6 +482,31 @@ class GameController extends Notifier<GameState> {
 
   void setSnapping(bool v) => state = state.copyWith(snapping: v);
 
+  /// Tap a decoded row to reclassify planned ↔ unplanned. This is both the
+  /// mis-match fix and the whole mechanic of freestyle rounds (no list:
+  /// everything arrives unplanned, you claim what you meant to buy).
+  void toggleParsedRow(int index) {
+    if (index < 0 || index >= state.parsedRows.length) return;
+    final rows = [...state.parsedRows];
+    final items = [...state.cartItems];
+    final r = rows[index];
+    rows[index] = ParsedRow(
+      raw: r.raw,
+      full: r.full,
+      price: r.price,
+      confidence: r.confidence,
+      impulse: !r.impulse,
+    );
+    final it = items[index];
+    items[index] = CartItem(
+      name: it.name,
+      fullName: it.fullName,
+      price: it.price,
+      impulse: !it.impulse,
+    );
+    state = state.copyWith(parsedRows: rows, cartItems: items);
+  }
+
   // ---- verdict
 
   Future<void> confirmScan() async {
