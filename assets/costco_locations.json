@@ -1,7 +1,5820 @@
 {
-  "_comment": "US Costco warehouse coordinates for arrival prompts (M3). NOT YET COMPILED — Costco's own locator API is bot-gated (HTTP 403, and scraping it violates their ToS); OpenStreetMap Overpass was overloaded (504) at build time. Compile once with the query below when Overpass is healthy, or license a POI dataset. The app must degrade gracefully while this list is empty: no location UI is shown at all.",
-  "_compile_with": "curl -s https://overpass-api.de/api/interpreter --data-urlencode 'data=[out:json][timeout:120];(node[\"shop\"=\"wholesale\"][\"name\"~\"Costco\"](24.0,-125.0,49.5,-66.0);way[\"shop\"=\"wholesale\"][\"name\"~\"Costco\"](24.0,-125.0,49.5,-66.0););out center tags;' | <map to schema below>",
-  "_attribution": "When compiled from OpenStreetMap: © OpenStreetMap contributors, ODbL — attribution must appear in Settings.",
-  "_schema": { "id": "string", "name": "string", "state": "US state code", "lat": 0.0, "lng": 0.0 },
-  "warehouses": []
+ "_comment": "US + Canada Costco warehouses, geocoded 2026-07-07 from the owner-provided address list. US: US Census Bureau geocoder (public domain). Remainder + Canada: Nominatim / OpenStreetMap (ODbL - attribution shown in Settings). 'approx: true' = city-level accuracy only. GB stores excluded (US/CA focus). Refresh at app updates; never fetch at runtime.",
+ "warehouses": [
+  {
+   "name": "Costco Calgary",
+   "city": "Calgary",
+   "state": "AB",
+   "country": "CA",
+   "lat": 50.989265,
+   "lng": -114.044033
+  },
+  {
+   "name": "Costco Calgary",
+   "city": "Calgary",
+   "state": "AB",
+   "country": "CA",
+   "lat": 51.079142,
+   "lng": -113.990619
+  },
+  {
+   "name": "Costco Calgary",
+   "city": "Calgary",
+   "state": "AB",
+   "country": "CA",
+   "lat": 51.04325,
+   "lng": -113.917452
+  },
+  {
+   "name": "Costco Calgary",
+   "city": "Calgary",
+   "state": "AB",
+   "country": "CA",
+   "lat": 51.154792,
+   "lng": -114.155322
+  },
+  {
+   "name": "Costco Edmonton",
+   "city": "Edmonton",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.505717,
+   "lng": -113.688503
+  },
+  {
+   "name": "Costco Edmonton",
+   "city": "Edmonton",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.595772,
+   "lng": -113.416913
+  },
+  {
+   "name": "Costco Edmonton",
+   "city": "Edmonton",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.566521,
+   "lng": -113.577983
+  },
+  {
+   "name": "Costco Edmonton",
+   "city": "Edmonton",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.455862,
+   "lng": -113.469834
+  },
+  {
+   "name": "Costco Edmonton",
+   "city": "Edmonton",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.54448,
+   "lng": -113.647452
+  },
+  {
+   "name": "Costco Grande Prairie",
+   "city": "Grande Prairie",
+   "state": "AB",
+   "country": "CA",
+   "lat": 55.168821,
+   "lng": -118.844048
+  },
+  {
+   "name": "Costco Lethbridge",
+   "city": "Lethbridge",
+   "state": "AB",
+   "country": "CA",
+   "lat": 49.660945,
+   "lng": -112.797064
+  },
+  {
+   "name": "Costco Medicine Hat",
+   "city": "Medicine Hat",
+   "state": "AB",
+   "country": "CA",
+   "lat": 50.064223,
+   "lng": -110.742228
+  },
+  {
+   "name": "Costco Okotoks",
+   "city": "Okotoks",
+   "state": "AB",
+   "country": "CA",
+   "lat": 50.706242,
+   "lng": -113.946884
+  },
+  {
+   "name": "Costco Red Deer",
+   "city": "Red Deer",
+   "state": "AB",
+   "country": "CA",
+   "lat": 52.213003,
+   "lng": -113.820345
+  },
+  {
+   "name": "Costco Rocky View County",
+   "city": "Rocky View County",
+   "state": "AB",
+   "country": "CA",
+   "lat": 50.938064,
+   "lng": -114.144613,
+   "approx": true
+  },
+  {
+   "name": "Costco Sherwood Park",
+   "city": "Sherwood Park",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.571526,
+   "lng": -113.319632
+  },
+  {
+   "name": "Costco St. Albert",
+   "city": "St. Albert",
+   "state": "AB",
+   "country": "CA",
+   "lat": 53.666754,
+   "lng": -113.635563
+  },
+  {
+   "name": "Costco Abbotsford",
+   "city": "Abbotsford",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.023607,
+   "lng": -122.267215
+  },
+  {
+   "name": "Costco Burnaby",
+   "city": "Burnaby",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.260272,
+   "lng": -122.999198
+  },
+  {
+   "name": "Costco Burnaby",
+   "city": "Burnaby",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.251138,
+   "lng": -122.917186
+  },
+  {
+   "name": "Costco Courtenay",
+   "city": "Courtenay",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.712401,
+   "lng": -124.963226
+  },
+  {
+   "name": "Costco Kamloops",
+   "city": "Kamloops",
+   "state": "BC",
+   "country": "CA",
+   "lat": 50.654657,
+   "lng": -120.389495
+  },
+  {
+   "name": "Costco Kelowna",
+   "city": "Kelowna",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.881267,
+   "lng": -119.430526
+  },
+  {
+   "name": "Costco Langley",
+   "city": "Langley",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.119286,
+   "lng": -122.656051
+  },
+  {
+   "name": "Costco Nanaimo",
+   "city": "Nanaimo",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.237541,
+   "lng": -124.043896
+  },
+  {
+   "name": "Costco Port Coquitlam",
+   "city": "Port Coquitlam",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.255503,
+   "lng": -122.744787
+  },
+  {
+   "name": "Costco Prince George",
+   "city": "Prince George",
+   "state": "BC",
+   "country": "CA",
+   "lat": 53.883989,
+   "lng": -122.771946
+  },
+  {
+   "name": "Costco Richmond",
+   "city": "Richmond",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.192946,
+   "lng": -123.121742
+  },
+  {
+   "name": "Costco Surrey",
+   "city": "Surrey",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.1381,
+   "lng": -122.847526
+  },
+  {
+   "name": "Costco Vancouver",
+   "city": "Vancouver",
+   "state": "BC",
+   "country": "CA",
+   "lat": 49.278777,
+   "lng": -123.109564
+  },
+  {
+   "name": "Costco Winnipeg",
+   "city": "Winnipeg",
+   "state": "MB",
+   "country": "CA",
+   "lat": 49.882464,
+   "lng": -97.338179
+  },
+  {
+   "name": "Costco Winnipeg",
+   "city": "Winnipeg",
+   "state": "MB",
+   "country": "CA",
+   "lat": 49.821259,
+   "lng": -97.20888
+  },
+  {
+   "name": "Costco Winnipeg",
+   "city": "Winnipeg",
+   "state": "MB",
+   "country": "CA",
+   "lat": 49.903529,
+   "lng": -97.198673
+  },
+  {
+   "name": "Costco Winnipeg",
+   "city": "Winnipeg",
+   "state": "MB",
+   "country": "CA",
+   "lat": 49.896298,
+   "lng": -97.053562
+  },
+  {
+   "name": "Costco Fredericton",
+   "city": "Fredericton",
+   "state": "NB",
+   "country": "CA",
+   "lat": 45.926918,
+   "lng": -66.663212
+  },
+  {
+   "name": "Costco Moncton",
+   "city": "Moncton",
+   "state": "NB",
+   "country": "CA",
+   "lat": 46.129334,
+   "lng": -64.778711
+  },
+  {
+   "name": "Costco Saint John",
+   "city": "Saint John",
+   "state": "NB",
+   "country": "CA",
+   "lat": 45.305701,
+   "lng": -66.028106
+  },
+  {
+   "name": "Costco St. John's",
+   "city": "St. John's",
+   "state": "NL",
+   "country": "CA",
+   "lat": 47.506461,
+   "lng": -52.835755
+  },
+  {
+   "name": "Costco Dartmouth",
+   "city": "Dartmouth",
+   "state": "NS",
+   "country": "CA",
+   "lat": 44.704633,
+   "lng": -63.566634
+  },
+  {
+   "name": "Costco Halifax",
+   "city": "Halifax",
+   "state": "NS",
+   "country": "CA",
+   "lat": 44.656933,
+   "lng": -63.675652
+  },
+  {
+   "name": "Costco Ajax",
+   "city": "Ajax",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.863343,
+   "lng": -79.017561
+  },
+  {
+   "name": "Costco Barrie",
+   "city": "Barrie",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.334053,
+   "lng": -79.682204
+  },
+  {
+   "name": "Costco Brampton",
+   "city": "Brampton",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.683143,
+   "lng": -79.712223
+  },
+  {
+   "name": "Costco Brantford",
+   "city": "Brantford",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.167488,
+   "lng": -80.239563
+  },
+  {
+   "name": "Costco Burlington",
+   "city": "Burlington",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.344341,
+   "lng": -79.821387
+  },
+  {
+   "name": "Costco East Gwillimbury",
+   "city": "East Gwillimbury",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.072405,
+   "lng": -79.484813
+  },
+  {
+   "name": "Costco Etobicoke",
+   "city": "Etobicoke",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.712248,
+   "lng": -79.555068
+  },
+  {
+   "name": "Costco Etobicoke",
+   "city": "Etobicoke",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.622693,
+   "lng": -79.507666
+  },
+  {
+   "name": "Costco Gloucester",
+   "city": "Gloucester",
+   "state": "ON",
+   "country": "CA",
+   "lat": 45.424164,
+   "lng": -75.63356
+  },
+  {
+   "name": "Costco Gloucester",
+   "city": "Gloucester",
+   "state": "ON",
+   "country": "CA",
+   "lat": 45.435015,
+   "lng": -75.603359
+  },
+  {
+   "name": "Costco Guelph",
+   "city": "Guelph",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.522518,
+   "lng": -80.294754
+  },
+  {
+   "name": "Costco Kanata",
+   "city": "Kanata",
+   "state": "ON",
+   "country": "CA",
+   "lat": 45.302796,
+   "lng": -75.913194
+  },
+  {
+   "name": "Costco Kingston",
+   "city": "Kingston",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.260223,
+   "lng": -76.560991
+  },
+  {
+   "name": "Costco Kitchener",
+   "city": "Kitchener",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.40706,
+   "lng": -80.392249,
+   "approx": true
+  },
+  {
+   "name": "Costco London",
+   "city": "London",
+   "state": "ON",
+   "country": "CA",
+   "lat": 42.986765,
+   "lng": -81.293945
+  },
+  {
+   "name": "Costco London",
+   "city": "London",
+   "state": "ON",
+   "country": "CA",
+   "lat": 42.915962,
+   "lng": -81.213091
+  },
+  {
+   "name": "Costco Markham",
+   "city": "Markham",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.845678,
+   "lng": -79.351734
+  },
+  {
+   "name": "Costco Markham",
+   "city": "Markham",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.847341,
+   "lng": -79.240837
+  },
+  {
+   "name": "Costco Mississauga",
+   "city": "Mississauga",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.612208,
+   "lng": -79.690378
+  },
+  {
+   "name": "Costco Mississauga",
+   "city": "Mississauga",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.598549,
+   "lng": -79.790446,
+   "approx": true
+  },
+  {
+   "name": "Costco Mississauga",
+   "city": "Mississauga",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.521057,
+   "lng": -79.68879
+  },
+  {
+   "name": "Costco Nepean",
+   "city": "Nepean",
+   "state": "ON",
+   "country": "CA",
+   "lat": 45.2688,
+   "lng": -75.782545
+  },
+  {
+   "name": "Costco Nepean",
+   "city": "Nepean",
+   "state": "ON",
+   "country": "CA",
+   "lat": 45.337424,
+   "lng": -75.722461
+  },
+  {
+   "name": "Costco Newmarket",
+   "city": "Newmarket",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.05867,
+   "lng": -79.420707
+  },
+  {
+   "name": "Costco Niagara Falls",
+   "city": "Niagara Falls",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.066466,
+   "lng": -79.12767
+  },
+  {
+   "name": "Costco North York",
+   "city": "North York",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.731022,
+   "lng": -79.455861
+  },
+  {
+   "name": "Costco Orillia",
+   "city": "Orillia",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.594785,
+   "lng": -79.452593
+  },
+  {
+   "name": "Costco Oshawa",
+   "city": "Oshawa",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.965893,
+   "lng": -78.891834
+  },
+  {
+   "name": "Costco Oshawa",
+   "city": "Oshawa",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.951906,
+   "lng": -78.876607
+  },
+  {
+   "name": "Costco Peterborough",
+   "city": "Peterborough",
+   "state": "ON",
+   "country": "CA",
+   "lat": 44.273323,
+   "lng": -78.340482
+  },
+  {
+   "name": "Costco Richmond Hill",
+   "city": "Richmond Hill",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.901957,
+   "lng": -79.391413
+  },
+  {
+   "name": "Costco Scarborough",
+   "city": "Scarborough",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.731904,
+   "lng": -79.282484
+  },
+  {
+   "name": "Costco Scarborough",
+   "city": "Scarborough",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.759388,
+   "lng": -79.297859
+  },
+  {
+   "name": "Costco St. Catharines",
+   "city": "St. Catharines",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.179054,
+   "lng": -79.298935
+  },
+  {
+   "name": "Costco Stoney Creek",
+   "city": "Stoney Creek",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.21543,
+   "lng": -79.645386
+  },
+  {
+   "name": "Costco Sudbury",
+   "city": "Sudbury",
+   "state": "ON",
+   "country": "CA",
+   "lat": 46.503189,
+   "lng": -80.947828
+  },
+  {
+   "name": "Costco Toronto",
+   "city": "Toronto",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.70728,
+   "lng": -79.348271
+  },
+  {
+   "name": "Costco Waterloo",
+   "city": "Waterloo",
+   "state": "ON",
+   "country": "CA",
+   "lat": 43.445549,
+   "lng": -80.580365
+  },
+  {
+   "name": "Costco Windsor",
+   "city": "Windsor",
+   "state": "ON",
+   "country": "CA",
+   "lat": 42.255321,
+   "lng": -82.966464
+  },
+  {
+   "name": "Costco Anjou",
+   "city": "Anjou",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.622859,
+   "lng": -73.556084
+  },
+  {
+   "name": "Costco Anjou",
+   "city": "Anjou",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.609204,
+   "lng": -73.585148
+  },
+  {
+   "name": "Costco Boisbriand",
+   "city": "Boisbriand",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.630454,
+   "lng": -73.850138
+  },
+  {
+   "name": "Costco Boucherville",
+   "city": "Boucherville",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.576912,
+   "lng": -73.40578
+  },
+  {
+   "name": "Costco Brossard",
+   "city": "Brossard",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.433793,
+   "lng": -73.478024
+  },
+  {
+   "name": "Costco Candiac",
+   "city": "Candiac",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.370939,
+   "lng": -73.516912
+  },
+  {
+   "name": "Costco Chicoutimi",
+   "city": "Chicoutimi",
+   "state": "QC",
+   "country": "CA",
+   "lat": 48.383055,
+   "lng": -71.083989,
+   "approx": true
+  },
+  {
+   "name": "Costco Drummondville",
+   "city": "Drummondville",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.907646,
+   "lng": -72.516391
+  },
+  {
+   "name": "Costco Gatineau",
+   "city": "Gatineau",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.47576,
+   "lng": -75.696807
+  },
+  {
+   "name": "Costco Laval",
+   "city": "Laval",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.574222,
+   "lng": -73.756858,
+   "approx": true
+  },
+  {
+   "name": "Costco Levis",
+   "city": "Levis",
+   "state": "QC",
+   "country": "CA",
+   "lat": 46.730269,
+   "lng": -71.263254
+  },
+  {
+   "name": "Costco Montreal",
+   "city": "Montreal",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.535758,
+   "lng": -73.660301
+  },
+  {
+   "name": "Costco Montreal",
+   "city": "Montreal",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.486066,
+   "lng": -73.552621
+  },
+  {
+   "name": "Costco Pointe-claire",
+   "city": "Pointe-claire",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.469769,
+   "lng": -73.818813,
+   "approx": true
+  },
+  {
+   "name": "Costco Quebec",
+   "city": "Quebec",
+   "state": "QC",
+   "country": "CA",
+   "lat": 46.782812,
+   "lng": -71.328562
+  },
+  {
+   "name": "Costco Quebec",
+   "city": "Quebec",
+   "state": "QC",
+   "country": "CA",
+   "lat": 46.839894,
+   "lng": -71.269817
+  },
+  {
+   "name": "Costco Saint-bruno",
+   "city": "Saint-bruno",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.501685,
+   "lng": -73.381952
+  },
+  {
+   "name": "Costco Saint-hubert",
+   "city": "Saint-hubert",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.505158,
+   "lng": -73.432265
+  },
+  {
+   "name": "Costco Saint-jerome",
+   "city": "Saint-jerome",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.765721,
+   "lng": -74.018295
+  },
+  {
+   "name": "Costco Sherbrooke",
+   "city": "Sherbrooke",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.423493,
+   "lng": -71.96319
+  },
+  {
+   "name": "Costco Terrebonne",
+   "city": "Terrebonne",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.721951,
+   "lng": -73.507704
+  },
+  {
+   "name": "Costco Trois-rivieres",
+   "city": "Trois-rivieres",
+   "state": "QC",
+   "country": "CA",
+   "lat": 46.330222,
+   "lng": -72.57036,
+   "approx": true
+  },
+  {
+   "name": "Costco Vaudreuil-dorion",
+   "city": "Vaudreuil-dorion",
+   "state": "QC",
+   "country": "CA",
+   "lat": 45.414737,
+   "lng": -74.037519
+  },
+  {
+   "name": "Costco Regina",
+   "city": "Regina",
+   "state": "SK",
+   "country": "CA",
+   "lat": 50.443556,
+   "lng": -104.50767
+  },
+  {
+   "name": "Costco Saskatoon",
+   "city": "Saskatoon",
+   "state": "SK",
+   "country": "CA",
+   "lat": 52.09115,
+   "lng": -106.528841
+  },
+  {
+   "name": "Costco Saskatoon",
+   "city": "Saskatoon",
+   "state": "SK",
+   "country": "CA",
+   "lat": 52.193463,
+   "lng": -106.67295,
+   "approx": true
+  },
+  {
+   "name": "Costco Anchorage",
+   "city": "Anchorage",
+   "state": "AK",
+   "country": "US",
+   "lat": 61.231125,
+   "lng": -149.742312
+  },
+  {
+   "name": "Costco Anchorage",
+   "city": "Anchorage",
+   "state": "AK",
+   "country": "US",
+   "lat": 61.144672,
+   "lng": -149.885192
+  },
+  {
+   "name": "Costco Anchorage",
+   "city": "Anchorage",
+   "state": "AK",
+   "country": "US",
+   "lat": 61.209767,
+   "lng": -149.803665
+  },
+  {
+   "name": "Costco Anchorage",
+   "city": "Anchorage",
+   "state": "AK",
+   "country": "US",
+   "lat": 61.143079,
+   "lng": -149.879051
+  },
+  {
+   "name": "Costco Fairbanks",
+   "city": "Fairbanks",
+   "state": "AK",
+   "country": "US",
+   "lat": 64.851825,
+   "lng": -147.707953
+  },
+  {
+   "name": "Costco Juneau",
+   "city": "Juneau",
+   "state": "AK",
+   "country": "US",
+   "lat": 58.357844,
+   "lng": -134.482656
+  },
+  {
+   "name": "Costco Hoover",
+   "city": "Hoover",
+   "state": "AL",
+   "country": "US",
+   "lat": 33.378766,
+   "lng": -86.811331
+  },
+  {
+   "name": "Costco Huntsville",
+   "city": "Huntsville",
+   "state": "AL",
+   "country": "US",
+   "lat": 34.744164,
+   "lng": -86.603278,
+   "approx": true
+  },
+  {
+   "name": "Costco Madison",
+   "city": "Madison",
+   "state": "AL",
+   "country": "US",
+   "lat": 34.752361,
+   "lng": -86.749703
+  },
+  {
+   "name": "Costco Mobile",
+   "city": "Mobile",
+   "state": "AL",
+   "country": "US",
+   "lat": 30.648067,
+   "lng": -88.119027,
+   "approx": true
+  },
+  {
+   "name": "Costco Montgomery",
+   "city": "Montgomery",
+   "state": "AL",
+   "country": "US",
+   "lat": 32.361722,
+   "lng": -86.152003
+  },
+  {
+   "name": "Costco Little Rock",
+   "city": "Little Rock",
+   "state": "AR",
+   "country": "US",
+   "lat": 34.75833,
+   "lng": -92.450528
+  },
+  {
+   "name": "Costco Avondale",
+   "city": "Avondale",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.464783,
+   "lng": -112.274846
+  },
+  {
+   "name": "Costco Buckeye",
+   "city": "Buckeye",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.457962,
+   "lng": -112.504215
+  },
+  {
+   "name": "Costco Chandler",
+   "city": "Chandler",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.294624,
+   "lng": -111.901867
+  },
+  {
+   "name": "Costco Gilbert",
+   "city": "Gilbert",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.29771,
+   "lng": -111.747021
+  },
+  {
+   "name": "Costco Gilbert",
+   "city": "Gilbert",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.37587,
+   "lng": -111.840142
+  },
+  {
+   "name": "Costco Glendale",
+   "city": "Glendale",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.64335,
+   "lng": -112.231141
+  },
+  {
+   "name": "Costco Mesa",
+   "city": "Mesa",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.389111,
+   "lng": -111.667587
+  },
+  {
+   "name": "Costco Phoenix",
+   "city": "Phoenix",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.669637,
+   "lng": -112.028916
+  },
+  {
+   "name": "Costco Phoenix",
+   "city": "Phoenix",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.472993,
+   "lng": -111.984739
+  },
+  {
+   "name": "Costco Phoenix",
+   "city": "Phoenix",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.658533,
+   "lng": -112.117056
+  },
+  {
+   "name": "Costco Phoenix",
+   "city": "Phoenix",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.492316,
+   "lng": -112.129892
+  },
+  {
+   "name": "Costco Phoenix",
+   "city": "Phoenix",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.599423,
+   "lng": -111.982467
+  },
+  {
+   "name": "Costco Prescott",
+   "city": "Prescott",
+   "state": "AZ",
+   "country": "US",
+   "lat": 34.548901,
+   "lng": -112.395825
+  },
+  {
+   "name": "Costco Queen Creek",
+   "city": "Queen Creek",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.264407,
+   "lng": -111.634788
+  },
+  {
+   "name": "Costco Scottsdale",
+   "city": "Scottsdale",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.624143,
+   "lng": -111.901925
+  },
+  {
+   "name": "Costco Surprise",
+   "city": "Surprise",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.60787,
+   "lng": -112.410915
+  },
+  {
+   "name": "Costco Tempe",
+   "city": "Tempe",
+   "state": "AZ",
+   "country": "US",
+   "lat": 33.349051,
+   "lng": -111.963048
+  },
+  {
+   "name": "Costco Tucson",
+   "city": "Tucson",
+   "state": "AZ",
+   "country": "US",
+   "lat": 32.250706,
+   "lng": -110.858959
+  },
+  {
+   "name": "Costco Tucson",
+   "city": "Tucson",
+   "state": "AZ",
+   "country": "US",
+   "lat": 32.184296,
+   "lng": -110.947709
+  },
+  {
+   "name": "Costco Tucson",
+   "city": "Tucson",
+   "state": "AZ",
+   "country": "US",
+   "lat": 32.326052,
+   "lng": -111.050053
+  },
+  {
+   "name": "Costco Alhambra",
+   "city": "Alhambra",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.087921,
+   "lng": -118.148268
+  },
+  {
+   "name": "Costco Antioch",
+   "city": "Antioch",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.009786,
+   "lng": -121.837917
+  },
+  {
+   "name": "Costco Azusa",
+   "city": "Azusa",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.133768,
+   "lng": -117.925333
+  },
+  {
+   "name": "Costco Bakersfield",
+   "city": "Bakersfield",
+   "state": "CA",
+   "country": "US",
+   "lat": 35.296019,
+   "lng": -119.056746
+  },
+  {
+   "name": "Costco Bakersfield",
+   "city": "Bakersfield",
+   "state": "CA",
+   "country": "US",
+   "lat": 35.383311,
+   "lng": -119.050316
+  },
+  {
+   "name": "Costco Burbank",
+   "city": "Burbank",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.183457,
+   "lng": -118.324161
+  },
+  {
+   "name": "Costco Carlsbad",
+   "city": "Carlsbad",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.121962,
+   "lng": -117.318399
+  },
+  {
+   "name": "Costco Chico",
+   "city": "Chico",
+   "state": "CA",
+   "country": "US",
+   "lat": 39.721065,
+   "lng": -121.811515,
+   "approx": true
+  },
+  {
+   "name": "Costco Chino Hills",
+   "city": "Chino Hills",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.013357,
+   "lng": -117.744226
+  },
+  {
+   "name": "Costco Chula Vista",
+   "city": "Chula Vista",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.609164,
+   "lng": -117.081013
+  },
+  {
+   "name": "Costco Chula Vista",
+   "city": "Chula Vista",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.635861,
+   "lng": -117.021433
+  },
+  {
+   "name": "Costco Citrus Heights",
+   "city": "Citrus Heights",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.689508,
+   "lng": -121.297182
+  },
+  {
+   "name": "Costco City Of Industry",
+   "city": "City Of Industry",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.995119,
+   "lng": -117.921352
+  },
+  {
+   "name": "Costco Clovis",
+   "city": "Clovis",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.806465,
+   "lng": -119.700331
+  },
+  {
+   "name": "Costco Commerce",
+   "city": "Commerce",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.994744,
+   "lng": -118.143065
+  },
+  {
+   "name": "Costco Concord",
+   "city": "Concord",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.959453,
+   "lng": -122.034399
+  },
+  {
+   "name": "Costco Corona",
+   "city": "Corona",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.889642,
+   "lng": -117.520625
+  },
+  {
+   "name": "Costco Cypress",
+   "city": "Cypress",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.804528,
+   "lng": -118.03959
+  },
+  {
+   "name": "Costco Danville",
+   "city": "Danville",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.7827,
+   "lng": -121.973311
+  },
+  {
+   "name": "Costco Eastvale",
+   "city": "Eastvale",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.996443,
+   "lng": -117.558354
+  },
+  {
+   "name": "Costco El Centro",
+   "city": "El Centro",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.818393,
+   "lng": -115.570024
+  },
+  {
+   "name": "Costco Elk Grove",
+   "city": "Elk Grove",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.408905,
+   "lng": -121.417536
+  },
+  {
+   "name": "Costco Eureka",
+   "city": "Eureka",
+   "state": "CA",
+   "country": "US",
+   "lat": 40.791581,
+   "lng": -124.180728
+  },
+  {
+   "name": "Costco Fairfield",
+   "city": "Fairfield",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.21584,
+   "lng": -122.14567
+  },
+  {
+   "name": "Costco Folsom",
+   "city": "Folsom",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.646785,
+   "lng": -121.111035
+  },
+  {
+   "name": "Costco Fontana",
+   "city": "Fontana",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.138719,
+   "lng": -117.443559
+  },
+  {
+   "name": "Costco Foster City",
+   "city": "Foster City",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.560901,
+   "lng": -122.274699
+  },
+  {
+   "name": "Costco Fountain Valley",
+   "city": "Fountain Valley",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.703677,
+   "lng": -117.934475
+  },
+  {
+   "name": "Costco Fremont",
+   "city": "Fremont",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.503412,
+   "lng": -121.972765
+  },
+  {
+   "name": "Costco Fresno",
+   "city": "Fresno",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.808286,
+   "lng": -119.874167
+  },
+  {
+   "name": "Costco Fresno",
+   "city": "Fresno",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.840051,
+   "lng": -119.789332
+  },
+  {
+   "name": "Costco Fullerton",
+   "city": "Fullerton",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.878473,
+   "lng": -117.924241
+  },
+  {
+   "name": "Costco Garden Grove",
+   "city": "Garden Grove",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.774103,
+   "lng": -117.940869
+  },
+  {
+   "name": "Costco Gilroy",
+   "city": "Gilroy",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.008265,
+   "lng": -121.556488
+  },
+  {
+   "name": "Costco Goleta",
+   "city": "Goleta",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.42862,
+   "lng": -119.873868
+  },
+  {
+   "name": "Costco Hanford",
+   "city": "Hanford",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.328019,
+   "lng": -119.631282
+  },
+  {
+   "name": "Costco Hawthorne",
+   "city": "Hawthorne",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.919011,
+   "lng": -118.343788
+  },
+  {
+   "name": "Costco Hawthorne",
+   "city": "Hawthorne",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.899959,
+   "lng": -118.372174
+  },
+  {
+   "name": "Costco Hayward",
+   "city": "Hayward",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.617309,
+   "lng": -122.088541
+  },
+  {
+   "name": "Costco Hayward",
+   "city": "Hayward",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.66765,
+   "lng": -122.104437
+  },
+  {
+   "name": "Costco Huntington Beach",
+   "city": "Huntington Beach",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.732625,
+   "lng": -117.996963
+  },
+  {
+   "name": "Costco Inglewood",
+   "city": "Inglewood",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.94541,
+   "lng": -118.334193
+  },
+  {
+   "name": "Costco Irvine",
+   "city": "Irvine",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.660235,
+   "lng": -117.745561
+  },
+  {
+   "name": "Costco La Habra",
+   "city": "La Habra",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.931897,
+   "lng": -117.968057
+  },
+  {
+   "name": "Costco La Mesa",
+   "city": "La Mesa",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.774012,
+   "lng": -117.024305
+  },
+  {
+   "name": "Costco La Quinta",
+   "city": "La Quinta",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.707233,
+   "lng": -116.271849
+  },
+  {
+   "name": "Costco Laguna Niguel",
+   "city": "Laguna Niguel",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.556929,
+   "lng": -117.678888
+  },
+  {
+   "name": "Costco Laguna Niguel",
+   "city": "Laguna Niguel",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.569207,
+   "lng": -117.711787
+  },
+  {
+   "name": "Costco Lake Elsinore",
+   "city": "Lake Elsinore",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.694215,
+   "lng": -117.335222
+  },
+  {
+   "name": "Costco Lakewood",
+   "city": "Lakewood",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.850562,
+   "lng": -118.136924,
+   "approx": true
+  },
+  {
+   "name": "Costco Lancaster",
+   "city": "Lancaster",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.76256,
+   "lng": -118.151873
+  },
+  {
+   "name": "Costco Linda",
+   "city": "Linda",
+   "state": "CA",
+   "country": "US",
+   "lat": 39.125152,
+   "lng": -121.57298
+  },
+  {
+   "name": "Costco Livermore",
+   "city": "Livermore",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.70269,
+   "lng": -121.811063
+  },
+  {
+   "name": "Costco Lodi",
+   "city": "Lodi",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.099844,
+   "lng": -121.266286
+  },
+  {
+   "name": "Costco Loomis",
+   "city": "Loomis",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.810164,
+   "lng": -121.205308
+  },
+  {
+   "name": "Costco Los Angeles",
+   "city": "Los Angeles",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.126512,
+   "lng": -118.262923
+  },
+  {
+   "name": "Costco Manteca",
+   "city": "Manteca",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.786483,
+   "lng": -121.25948
+  },
+  {
+   "name": "Costco Marina Del Rey",
+   "city": "Marina Del Rey",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.991687,
+   "lng": -118.445428
+  },
+  {
+   "name": "Costco Merced",
+   "city": "Merced",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.302176,
+   "lng": -120.493953
+  },
+  {
+   "name": "Costco Modesto",
+   "city": "Modesto",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.70014,
+   "lng": -121.064578
+  },
+  {
+   "name": "Costco Montclair",
+   "city": "Montclair",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.083147,
+   "lng": -117.689632
+  },
+  {
+   "name": "Costco Monterey Park",
+   "city": "Monterey Park",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.03726,
+   "lng": -118.104671
+  },
+  {
+   "name": "Costco Moreno Valley",
+   "city": "Moreno Valley",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.934762,
+   "lng": -117.278774
+  },
+  {
+   "name": "Costco Mountain View",
+   "city": "Mountain View",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.421079,
+   "lng": -122.093686
+  },
+  {
+   "name": "Costco Murrieta",
+   "city": "Murrieta",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.600473,
+   "lng": -117.171001
+  },
+  {
+   "name": "Costco Napa",
+   "city": "Napa",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.250843,
+   "lng": -122.277611
+  },
+  {
+   "name": "Costco Newark",
+   "city": "Newark",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.525596,
+   "lng": -122.004863
+  },
+  {
+   "name": "Costco North Hollywood",
+   "city": "North Hollywood",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.201144,
+   "lng": -118.380479
+  },
+  {
+   "name": "Costco Northridge",
+   "city": "Northridge",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.23013,
+   "lng": -118.553494
+  },
+  {
+   "name": "Costco Norwalk",
+   "city": "Norwalk",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.919202,
+   "lng": -118.103559
+  },
+  {
+   "name": "Costco Novato",
+   "city": "Novato",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.087408,
+   "lng": -122.553141
+  },
+  {
+   "name": "Costco Ontario",
+   "city": "Ontario",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.063747,
+   "lng": -117.569256
+  },
+  {
+   "name": "Costco Oxnard",
+   "city": "Oxnard",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.223733,
+   "lng": -119.150078
+  },
+  {
+   "name": "Costco Pacoima",
+   "city": "Pacoima",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.272526,
+   "lng": -118.427642
+  },
+  {
+   "name": "Costco Palm Desert",
+   "city": "Palm Desert",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.801937,
+   "lng": -116.3893
+  },
+  {
+   "name": "Costco Pleasanton",
+   "city": "Pleasanton",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.695187,
+   "lng": -121.919177
+  },
+  {
+   "name": "Costco Poway",
+   "city": "Poway",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.936563,
+   "lng": -117.036468
+  },
+  {
+   "name": "Costco Rancho Cordova",
+   "city": "Rancho Cordova",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.589877,
+   "lng": -121.262901
+  },
+  {
+   "name": "Costco Rancho Cucamonga",
+   "city": "Rancho Cucamonga",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.07731,
+   "lng": -117.54826
+  },
+  {
+   "name": "Costco Redding",
+   "city": "Redding",
+   "state": "CA",
+   "country": "US",
+   "lat": 40.539247,
+   "lng": -122.354632
+  },
+  {
+   "name": "Costco Redwood City",
+   "city": "Redwood City",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.47957,
+   "lng": -122.215863
+  },
+  {
+   "name": "Costco Richmond",
+   "city": "Richmond",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.896846,
+   "lng": -122.321588
+  },
+  {
+   "name": "Costco Riverbank",
+   "city": "Riverbank",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.711034,
+   "lng": -120.963198
+  },
+  {
+   "name": "Costco Rohnert Park",
+   "city": "Rohnert Park",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.352291,
+   "lng": -122.715262
+  },
+  {
+   "name": "Costco Roseville",
+   "city": "Roseville",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.781757,
+   "lng": -121.265786
+  },
+  {
+   "name": "Costco Sacramento",
+   "city": "Sacramento",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.610419,
+   "lng": -121.385056
+  },
+  {
+   "name": "Costco Sacramento",
+   "city": "Sacramento",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.597905,
+   "lng": -121.454478
+  },
+  {
+   "name": "Costco Sacramento",
+   "city": "Sacramento",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.639134,
+   "lng": -121.520002
+  },
+  {
+   "name": "Costco Sacramento",
+   "city": "Sacramento",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.467656,
+   "lng": -121.415348
+  },
+  {
+   "name": "Costco Salinas",
+   "city": "Salinas",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.703421,
+   "lng": -121.666983
+  },
+  {
+   "name": "Costco San Bernardino",
+   "city": "San Bernardino",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.068917,
+   "lng": -117.263018
+  },
+  {
+   "name": "Costco San Diego",
+   "city": "San Diego",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.818368,
+   "lng": -117.222599
+  },
+  {
+   "name": "Costco San Diego",
+   "city": "San Diego",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.987801,
+   "lng": -117.075511
+  },
+  {
+   "name": "Costco San Diego",
+   "city": "San Diego",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.779722,
+   "lng": -117.129503
+  },
+  {
+   "name": "Costco San Diego",
+   "city": "San Diego",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.817081,
+   "lng": -117.154707
+  },
+  {
+   "name": "Costco San Diego",
+   "city": "San Diego",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.712366,
+   "lng": -117.114255
+  },
+  {
+   "name": "Costco San Dimas",
+   "city": "San Dimas",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.112931,
+   "lng": -117.828773
+  },
+  {
+   "name": "Costco San Francisco",
+   "city": "San Francisco",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.770914,
+   "lng": -122.410542
+  },
+  {
+   "name": "Costco San Jose",
+   "city": "San Jose",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.388565,
+   "lng": -121.88294
+  },
+  {
+   "name": "Costco San Jose",
+   "city": "San Jose",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.31125,
+   "lng": -121.85123
+  },
+  {
+   "name": "Costco San Jose",
+   "city": "San Jose",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.25407,
+   "lng": -121.875836
+  },
+  {
+   "name": "Costco San Jose",
+   "city": "San Jose",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.243859,
+   "lng": -121.78529
+  },
+  {
+   "name": "Costco San Jose",
+   "city": "San Jose",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.318074,
+   "lng": -121.810427
+  },
+  {
+   "name": "Costco San Juan Capistrano",
+   "city": "San Juan Capistrano",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.469303,
+   "lng": -117.675292
+  },
+  {
+   "name": "Costco San Leandro",
+   "city": "San Leandro",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.718207,
+   "lng": -122.181093
+  },
+  {
+   "name": "Costco San Luis Obispo",
+   "city": "San Luis Obispo",
+   "state": "CA",
+   "country": "US",
+   "lat": 35.252251,
+   "lng": -120.688334
+  },
+  {
+   "name": "Costco San Marcos",
+   "city": "San Marcos",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.138089,
+   "lng": -117.18272
+  },
+  {
+   "name": "Costco San Marcos",
+   "city": "San Marcos",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.134906,
+   "lng": -117.124945
+  },
+  {
+   "name": "Costco Sand City",
+   "city": "Sand City",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.616642,
+   "lng": -121.846425
+  },
+  {
+   "name": "Costco Santa Clara",
+   "city": "Santa Clara",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.358129,
+   "lng": -121.939232
+  },
+  {
+   "name": "Costco Santa Clarita",
+   "city": "Santa Clarita",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.403413,
+   "lng": -118.461301
+  },
+  {
+   "name": "Costco Santa Cruz",
+   "city": "Santa Cruz",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.984732,
+   "lng": -122.034857
+  },
+  {
+   "name": "Costco Santa Maria",
+   "city": "Santa Maria",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.926867,
+   "lng": -120.419017
+  },
+  {
+   "name": "Costco Santa Rosa",
+   "city": "Santa Rosa",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.420335,
+   "lng": -122.713424
+  },
+  {
+   "name": "Costco Santee",
+   "city": "Santee",
+   "state": "CA",
+   "country": "US",
+   "lat": 32.840119,
+   "lng": -116.988475
+  },
+  {
+   "name": "Costco Signal Hill",
+   "city": "Signal Hill",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.804271,
+   "lng": -118.165338
+  },
+  {
+   "name": "Costco Simi Valley",
+   "city": "Simi Valley",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.284179,
+   "lng": -118.797059
+  },
+  {
+   "name": "Costco South San Francisco",
+   "city": "South San Francisco",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.659693,
+   "lng": -122.404206
+  },
+  {
+   "name": "Costco South San Francisco",
+   "city": "South San Francisco",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.641523,
+   "lng": -122.402563
+  },
+  {
+   "name": "Costco South San Francisco",
+   "city": "South San Francisco",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.664108,
+   "lng": -122.448396
+  },
+  {
+   "name": "Costco Stockton",
+   "city": "Stockton",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.020872,
+   "lng": -121.292375
+  },
+  {
+   "name": "Costco Sunnyvale",
+   "city": "Sunnyvale",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.373326,
+   "lng": -121.995798
+  },
+  {
+   "name": "Costco Temecula",
+   "city": "Temecula",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.521149,
+   "lng": -117.156694
+  },
+  {
+   "name": "Costco Torrance",
+   "city": "Torrance",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.808414,
+   "lng": -118.333926
+  },
+  {
+   "name": "Costco Tracy",
+   "city": "Tracy",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.753943,
+   "lng": -121.473754
+  },
+  {
+   "name": "Costco Turlock",
+   "city": "Turlock",
+   "state": "CA",
+   "country": "US",
+   "lat": 37.519719,
+   "lng": -120.886526
+  },
+  {
+   "name": "Costco Tustin",
+   "city": "Tustin",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.726972,
+   "lng": -117.796411
+  },
+  {
+   "name": "Costco Tustin",
+   "city": "Tustin",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.698359,
+   "lng": -117.826739
+  },
+  {
+   "name": "Costco Ukiah",
+   "city": "Ukiah",
+   "state": "CA",
+   "country": "US",
+   "lat": 39.12736,
+   "lng": -123.196752
+  },
+  {
+   "name": "Costco Vacaville",
+   "city": "Vacaville",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.350817,
+   "lng": -121.982003
+  },
+  {
+   "name": "Costco Vallejo",
+   "city": "Vallejo",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.132617,
+   "lng": -122.215918
+  },
+  {
+   "name": "Costco Van Nuys",
+   "city": "Van Nuys",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.18046,
+   "lng": -118.466104
+  },
+  {
+   "name": "Costco Victorville",
+   "city": "Victorville",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.516069,
+   "lng": -117.319053
+  },
+  {
+   "name": "Costco Visalia",
+   "city": "Visalia",
+   "state": "CA",
+   "country": "US",
+   "lat": 36.294085,
+   "lng": -119.305485
+  },
+  {
+   "name": "Costco Vista",
+   "city": "Vista",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.187156,
+   "lng": -117.277408
+  },
+  {
+   "name": "Costco Westlake Village",
+   "city": "Westlake Village",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.151857,
+   "lng": -118.797086
+  },
+  {
+   "name": "Costco Westminster",
+   "city": "Westminster",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.769535,
+   "lng": -117.991792
+  },
+  {
+   "name": "Costco Woodland",
+   "city": "Woodland",
+   "state": "CA",
+   "country": "US",
+   "lat": 38.670011,
+   "lng": -121.723893
+  },
+  {
+   "name": "Costco Woodland Hills",
+   "city": "Woodland Hills",
+   "state": "CA",
+   "country": "US",
+   "lat": 34.18749,
+   "lng": -118.602561
+  },
+  {
+   "name": "Costco Yorba Linda",
+   "city": "Yorba Linda",
+   "state": "CA",
+   "country": "US",
+   "lat": 33.874872,
+   "lng": -117.743546
+  },
+  {
+   "name": "Costco Arvada",
+   "city": "Arvada",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.7911,
+   "lng": -105.081486
+  },
+  {
+   "name": "Costco Aurora",
+   "city": "Aurora",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.690554,
+   "lng": -104.866039
+  },
+  {
+   "name": "Costco Colorado Springs",
+   "city": "Colorado Springs",
+   "state": "CO",
+   "country": "US",
+   "lat": 38.893453,
+   "lng": -104.717291
+  },
+  {
+   "name": "Costco Colorado Springs",
+   "city": "Colorado Springs",
+   "state": "CO",
+   "country": "US",
+   "lat": 38.905843,
+   "lng": -104.820834
+  },
+  {
+   "name": "Costco Denver",
+   "city": "Denver",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.709277,
+   "lng": -105.015628
+  },
+  {
+   "name": "Costco Denver",
+   "city": "Denver",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.780659,
+   "lng": -104.794683
+  },
+  {
+   "name": "Costco Gypsum",
+   "city": "Gypsum",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.644519,
+   "lng": -106.891441
+  },
+  {
+   "name": "Costco Littleton",
+   "city": "Littleton",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.638645,
+   "lng": -105.085918
+  },
+  {
+   "name": "Costco Littleton",
+   "city": "Littleton",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.559144,
+   "lng": -104.875985
+  },
+  {
+   "name": "Costco Longmont",
+   "city": "Longmont",
+   "state": "CO",
+   "country": "US",
+   "lat": 40.152347,
+   "lng": -105.094224
+  },
+  {
+   "name": "Costco Parker",
+   "city": "Parker",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.558775,
+   "lng": -104.777114
+  },
+  {
+   "name": "Costco Sheridan",
+   "city": "Sheridan",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.644091,
+   "lng": -105.008738
+  },
+  {
+   "name": "Costco Superior",
+   "city": "Superior",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.967523,
+   "lng": -105.236483
+  },
+  {
+   "name": "Costco Thornton",
+   "city": "Thornton",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.991813,
+   "lng": -104.978335
+  },
+  {
+   "name": "Costco Timnath",
+   "city": "Timnath",
+   "state": "CO",
+   "country": "US",
+   "lat": 40.520323,
+   "lng": -104.988299
+  },
+  {
+   "name": "Costco Westminster",
+   "city": "Westminster",
+   "state": "CO",
+   "country": "US",
+   "lat": 39.863672,
+   "lng": -105.067403
+  },
+  {
+   "name": "Costco Brookfield",
+   "city": "Brookfield",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.442952,
+   "lng": -73.404924
+  },
+  {
+   "name": "Costco East Lyme",
+   "city": "East Lyme",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.361862,
+   "lng": -72.209639
+  },
+  {
+   "name": "Costco Enfield",
+   "city": "Enfield",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.99153,
+   "lng": -72.576716
+  },
+  {
+   "name": "Costco Milford",
+   "city": "Milford",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.249071,
+   "lng": -73.023492
+  },
+  {
+   "name": "Costco New Britain",
+   "city": "New Britain",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.710365,
+   "lng": -72.765681
+  },
+  {
+   "name": "Costco Norwalk",
+   "city": "Norwalk",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.092455,
+   "lng": -73.452763
+  },
+  {
+   "name": "Costco South Windsor",
+   "city": "South Windsor",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.817943,
+   "lng": -72.554686
+  },
+  {
+   "name": "Costco Waterbury",
+   "city": "Waterbury",
+   "state": "CT",
+   "country": "US",
+   "lat": 41.542552,
+   "lng": -72.969028
+  },
+  {
+   "name": "Costco Washington",
+   "city": "Washington",
+   "state": "DC",
+   "country": "US",
+   "lat": 38.919854,
+   "lng": -76.952684
+  },
+  {
+   "name": "Costco Newark",
+   "city": "Newark",
+   "state": "DE",
+   "country": "US",
+   "lat": 39.675542,
+   "lng": -75.649142
+  },
+  {
+   "name": "Costco Altamonte Springs",
+   "city": "Altamonte Springs",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.661777,
+   "lng": -81.416617
+  },
+  {
+   "name": "Costco Boca Raton",
+   "city": "Boca Raton",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.410835,
+   "lng": -80.101022
+  },
+  {
+   "name": "Costco Bradenton",
+   "city": "Bradenton",
+   "state": "FL",
+   "country": "US",
+   "lat": 27.500822,
+   "lng": -82.472516
+  },
+  {
+   "name": "Costco Brandon",
+   "city": "Brandon",
+   "state": "FL",
+   "country": "US",
+   "lat": 27.923019,
+   "lng": -82.331508
+  },
+  {
+   "name": "Costco Clearwater",
+   "city": "Clearwater",
+   "state": "FL",
+   "country": "US",
+   "lat": 27.960496,
+   "lng": -82.727411
+  },
+  {
+   "name": "Costco Clermont",
+   "city": "Clermont",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.548914,
+   "lng": -81.666718
+  },
+  {
+   "name": "Costco Coral Springs",
+   "city": "Coral Springs",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.287856,
+   "lng": -80.282448
+  },
+  {
+   "name": "Costco Davie",
+   "city": "Davie",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.092246,
+   "lng": -80.251098
+  },
+  {
+   "name": "Costco Daytona Beach",
+   "city": "Daytona Beach",
+   "state": "FL",
+   "country": "US",
+   "lat": 29.195539,
+   "lng": -81.076139
+  },
+  {
+   "name": "Costco Fort Myers",
+   "city": "Fort Myers",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.546032,
+   "lng": -81.876466
+  },
+  {
+   "name": "Costco Fort Myers",
+   "city": "Fort Myers",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.489075,
+   "lng": -81.784785
+  },
+  {
+   "name": "Costco Jacksonville",
+   "city": "Jacksonville",
+   "state": "FL",
+   "country": "US",
+   "lat": 30.200875,
+   "lng": -81.756266
+  },
+  {
+   "name": "Costco Jacksonville",
+   "city": "Jacksonville",
+   "state": "FL",
+   "country": "US",
+   "lat": 30.247811,
+   "lng": -81.535877
+  },
+  {
+   "name": "Costco Lantana",
+   "city": "Lantana",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.587335,
+   "lng": -80.073063
+  },
+  {
+   "name": "Costco Lutz",
+   "city": "Lutz",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.188589,
+   "lng": -82.394329
+  },
+  {
+   "name": "Costco Melbourne",
+   "city": "Melbourne",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.191554,
+   "lng": -80.72094
+  },
+  {
+   "name": "Costco Miami",
+   "city": "Miami",
+   "state": "FL",
+   "country": "US",
+   "lat": 25.769892,
+   "lng": -80.32413
+  },
+  {
+   "name": "Costco Miami",
+   "city": "Miami",
+   "state": "FL",
+   "country": "US",
+   "lat": 25.656382,
+   "lng": -80.412511
+  },
+  {
+   "name": "Costco Miami Lakes",
+   "city": "Miami Lakes",
+   "state": "FL",
+   "country": "US",
+   "lat": 25.923151,
+   "lng": -80.297327
+  },
+  {
+   "name": "Costco Naples",
+   "city": "Naples",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.217006,
+   "lng": -81.774556
+  },
+  {
+   "name": "Costco North Miami",
+   "city": "North Miami",
+   "state": "FL",
+   "country": "US",
+   "lat": 25.913189,
+   "lng": -80.154635
+  },
+  {
+   "name": "Costco North Port",
+   "city": "North Port",
+   "state": "FL",
+   "country": "US",
+   "lat": 27.044131,
+   "lng": -82.312926
+  },
+  {
+   "name": "Costco Orlando",
+   "city": "Orlando",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.403374,
+   "lng": -81.406652
+  },
+  {
+   "name": "Costco Orlando",
+   "city": "Orlando",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.4951,
+   "lng": -81.424091
+  },
+  {
+   "name": "Costco Palm Beach Gardens",
+   "city": "Palm Beach Gardens",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.808404,
+   "lng": -80.088386
+  },
+  {
+   "name": "Costco Pembroke Pines",
+   "city": "Pembroke Pines",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.007812,
+   "lng": -80.359886
+  },
+  {
+   "name": "Costco Pompano Beach",
+   "city": "Pompano Beach",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.27435,
+   "lng": -80.150278
+  },
+  {
+   "name": "Costco Royal Palm Beach",
+   "city": "Royal Palm Beach",
+   "state": "FL",
+   "country": "US",
+   "lat": 26.681103,
+   "lng": -80.219602
+  },
+  {
+   "name": "Costco Sarasota",
+   "city": "Sarasota",
+   "state": "FL",
+   "country": "US",
+   "lat": 27.230528,
+   "lng": -82.495023
+  },
+  {
+   "name": "Costco St. Augustine",
+   "city": "St. Augustine",
+   "state": "FL",
+   "country": "US",
+   "lat": 29.982624,
+   "lng": -81.464723
+  },
+  {
+   "name": "Costco Tallahassee",
+   "city": "Tallahassee",
+   "state": "FL",
+   "country": "US",
+   "lat": 30.462831,
+   "lng": -84.214793
+  },
+  {
+   "name": "Costco Tampa",
+   "city": "Tampa",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.043887,
+   "lng": -82.579923
+  },
+  {
+   "name": "Costco Winter Park",
+   "city": "Winter Park",
+   "state": "FL",
+   "country": "US",
+   "lat": 28.597455,
+   "lng": -81.30039
+  },
+  {
+   "name": "Costco Alpharetta",
+   "city": "Alpharetta",
+   "state": "GA",
+   "country": "US",
+   "lat": 34.090764,
+   "lng": -84.277043
+  },
+  {
+   "name": "Costco Athens",
+   "city": "Athens",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.920492,
+   "lng": -83.451947
+  },
+  {
+   "name": "Costco Atlanta",
+   "city": "Atlanta",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.926525,
+   "lng": -84.351602
+  },
+  {
+   "name": "Costco Atlanta",
+   "city": "Atlanta",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.870366,
+   "lng": -84.336509
+  },
+  {
+   "name": "Costco Atlanta",
+   "city": "Atlanta",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.877362,
+   "lng": -84.462935
+  },
+  {
+   "name": "Costco Augusta",
+   "city": "Augusta",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.524337,
+   "lng": -82.01906
+  },
+  {
+   "name": "Costco Buford",
+   "city": "Buford",
+   "state": "GA",
+   "country": "US",
+   "lat": 34.061245,
+   "lng": -83.995633
+  },
+  {
+   "name": "Costco Cumming",
+   "city": "Cumming",
+   "state": "GA",
+   "country": "US",
+   "lat": 34.210636,
+   "lng": -84.112809
+  },
+  {
+   "name": "Costco Dallas",
+   "city": "Dallas",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.920656,
+   "lng": -84.764203
+  },
+  {
+   "name": "Costco Duluth",
+   "city": "Duluth",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.953343,
+   "lng": -84.133315
+  },
+  {
+   "name": "Costco Kennesaw",
+   "city": "Kennesaw",
+   "state": "GA",
+   "country": "US",
+   "lat": 34.005903,
+   "lng": -84.570012
+  },
+  {
+   "name": "Costco Mcdonough",
+   "city": "Mcdonough",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.480318,
+   "lng": -84.218883
+  },
+  {
+   "name": "Costco Morrow",
+   "city": "Morrow",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.571244,
+   "lng": -84.335205
+  },
+  {
+   "name": "Costco Pooler",
+   "city": "Pooler",
+   "state": "GA",
+   "country": "US",
+   "lat": 32.080877,
+   "lng": -81.276769
+  },
+  {
+   "name": "Costco Sharpsburg",
+   "city": "Sharpsburg",
+   "state": "GA",
+   "country": "US",
+   "lat": 33.392891,
+   "lng": -84.624107
+  },
+  {
+   "name": "Costco Woodstock",
+   "city": "Woodstock",
+   "state": "GA",
+   "country": "US",
+   "lat": 34.119873,
+   "lng": -84.515219
+  },
+  {
+   "name": "Costco Honolulu",
+   "city": "Honolulu",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.283827,
+   "lng": -157.713256
+  },
+  {
+   "name": "Costco Honolulu",
+   "city": "Honolulu",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.318808,
+   "lng": -157.8721
+  },
+  {
+   "name": "Costco Kahului",
+   "city": "Kahului",
+   "state": "HI",
+   "country": "US",
+   "lat": 20.888097,
+   "lng": -156.456922
+  },
+  {
+   "name": "Costco Kailua Kona",
+   "city": "Kailua Kona",
+   "state": "HI",
+   "country": "US",
+   "lat": 19.687353,
+   "lng": -156.015957
+  },
+  {
+   "name": "Costco Kapolei",
+   "city": "Kapolei",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.327866,
+   "lng": -158.087499
+  },
+  {
+   "name": "Costco Lihue",
+   "city": "Lihue",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.965907,
+   "lng": -159.379433
+  },
+  {
+   "name": "Costco Pearl City",
+   "city": "Pearl City",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.426555,
+   "lng": -158.000123,
+   "approx": true
+  },
+  {
+   "name": "Costco Waipahu",
+   "city": "Waipahu",
+   "state": "HI",
+   "country": "US",
+   "lat": 21.427394,
+   "lng": -158.001515
+  },
+  {
+   "name": "Costco Ankeny",
+   "city": "Ankeny",
+   "state": "IA",
+   "country": "US",
+   "lat": 41.765475,
+   "lng": -93.565734
+  },
+  {
+   "name": "Costco Coralville",
+   "city": "Coralville",
+   "state": "IA",
+   "country": "US",
+   "lat": 41.699218,
+   "lng": -91.616687
+  },
+  {
+   "name": "Costco Davenport",
+   "city": "Davenport",
+   "state": "IA",
+   "country": "US",
+   "lat": 41.574893,
+   "lng": -90.534284
+  },
+  {
+   "name": "Costco West Des Moines",
+   "city": "West Des Moines",
+   "state": "IA",
+   "country": "US",
+   "lat": 41.561309,
+   "lng": -93.806671
+  },
+  {
+   "name": "Costco Boise",
+   "city": "Boise",
+   "state": "ID",
+   "country": "US",
+   "lat": 43.585461,
+   "lng": -116.274218
+  },
+  {
+   "name": "Costco Coeur D' Alene",
+   "city": "Coeur D' Alene",
+   "state": "ID",
+   "country": "US",
+   "lat": 47.708038,
+   "lng": -116.781888
+  },
+  {
+   "name": "Costco Idaho Falls",
+   "city": "Idaho Falls",
+   "state": "ID",
+   "country": "US",
+   "lat": 43.511507,
+   "lng": -111.984405
+  },
+  {
+   "name": "Costco Meridian",
+   "city": "Meridian",
+   "state": "ID",
+   "country": "US",
+   "lat": 43.662932,
+   "lng": -116.351541
+  },
+  {
+   "name": "Costco Nampa",
+   "city": "Nampa",
+   "state": "ID",
+   "country": "US",
+   "lat": 43.614091,
+   "lng": -116.591536
+  },
+  {
+   "name": "Costco Pocatello",
+   "city": "Pocatello",
+   "state": "ID",
+   "country": "US",
+   "lat": 42.905747,
+   "lng": -112.454683
+  },
+  {
+   "name": "Costco Twin Falls",
+   "city": "Twin Falls",
+   "state": "ID",
+   "country": "US",
+   "lat": 42.592042,
+   "lng": -114.465407
+  },
+  {
+   "name": "Costco Bloomingdale",
+   "city": "Bloomingdale",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.93967,
+   "lng": -88.131016
+  },
+  {
+   "name": "Costco Bolingbrook",
+   "city": "Bolingbrook",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.726018,
+   "lng": -88.032459
+  },
+  {
+   "name": "Costco Champaign",
+   "city": "Champaign",
+   "state": "IL",
+   "country": "US",
+   "lat": 40.139668,
+   "lng": -88.244265
+  },
+  {
+   "name": "Costco Chicago",
+   "city": "Chicago",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.760094,
+   "lng": -87.741832
+  },
+  {
+   "name": "Costco Chicago",
+   "city": "Chicago",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.862068,
+   "lng": -87.666341
+  },
+  {
+   "name": "Costco Chicago",
+   "city": "Chicago",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.93105,
+   "lng": -87.676807
+  },
+  {
+   "name": "Costco East Peoria",
+   "city": "East Peoria",
+   "state": "IL",
+   "country": "US",
+   "lat": 40.66388,
+   "lng": -89.575576
+  },
+  {
+   "name": "Costco Glenview",
+   "city": "Glenview",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.106756,
+   "lng": -87.82147
+  },
+  {
+   "name": "Costco Lake In The Hills",
+   "city": "Lake In The Hills",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.180666,
+   "lng": -88.335507
+  },
+  {
+   "name": "Costco Lake Zurich",
+   "city": "Lake Zurich",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.185162,
+   "lng": -88.092793
+  },
+  {
+   "name": "Costco Loves Park",
+   "city": "Loves Park",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.31966,
+   "lng": -88.960137
+  },
+  {
+   "name": "Costco Melrose Park",
+   "city": "Melrose Park",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.909265,
+   "lng": -87.836978,
+   "approx": true
+  },
+  {
+   "name": "Costco Mettawa",
+   "city": "Mettawa",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.232953,
+   "lng": -87.901986
+  },
+  {
+   "name": "Costco Mount Prospect",
+   "city": "Mount Prospect",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.119352,
+   "lng": -87.936701
+  },
+  {
+   "name": "Costco Naperville",
+   "city": "Naperville",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.745121,
+   "lng": -88.205769
+  },
+  {
+   "name": "Costco Naperville",
+   "city": "Naperville",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.795441,
+   "lng": -88.124314
+  },
+  {
+   "name": "Costco Niles",
+   "city": "Niles",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.013691,
+   "lng": -87.781687
+  },
+  {
+   "name": "Costco North Riverside",
+   "city": "North Riverside",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.84454,
+   "lng": -87.803618
+  },
+  {
+   "name": "Costco Oak Brook",
+   "city": "Oak Brook",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.84649,
+   "lng": -87.965034
+  },
+  {
+   "name": "Costco Orland Park",
+   "city": "Orland Park",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.601176,
+   "lng": -87.860194
+  },
+  {
+   "name": "Costco Plainfield",
+   "city": "Plainfield",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.587851,
+   "lng": -88.167788,
+   "approx": true
+  },
+  {
+   "name": "Costco Saint Charles",
+   "city": "Saint Charles",
+   "state": "IL",
+   "country": "US",
+   "lat": 41.908885,
+   "lng": -88.340013
+  },
+  {
+   "name": "Costco Schaumburg",
+   "city": "Schaumburg",
+   "state": "IL",
+   "country": "US",
+   "lat": 42.0558,
+   "lng": -88.04503
+  },
+  {
+   "name": "Costco Avon",
+   "city": "Avon",
+   "state": "IN",
+   "country": "US",
+   "lat": 39.766407,
+   "lng": -86.365822,
+   "approx": true
+  },
+  {
+   "name": "Costco Evansville",
+   "city": "Evansville",
+   "state": "IN",
+   "country": "US",
+   "lat": 37.989688,
+   "lng": -87.466923
+  },
+  {
+   "name": "Costco Fort Wayne",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "country": "US",
+   "lat": 41.125256,
+   "lng": -85.158937
+  },
+  {
+   "name": "Costco Granger",
+   "city": "Granger",
+   "state": "IN",
+   "country": "US",
+   "lat": 41.720358,
+   "lng": -86.172345
+  },
+  {
+   "name": "Costco Indianapolis",
+   "city": "Indianapolis",
+   "state": "IN",
+   "country": "US",
+   "lat": 39.636287,
+   "lng": -86.089766
+  },
+  {
+   "name": "Costco Indianapolis",
+   "city": "Indianapolis",
+   "state": "IN",
+   "country": "US",
+   "lat": 39.912494,
+   "lng": -86.064754
+  },
+  {
+   "name": "Costco Indianapolis",
+   "city": "Indianapolis",
+   "state": "IN",
+   "country": "US",
+   "lat": 39.916997,
+   "lng": -86.225285
+  },
+  {
+   "name": "Costco Merrillville",
+   "city": "Merrillville",
+   "state": "IN",
+   "country": "US",
+   "lat": 41.475963,
+   "lng": -87.321207
+  },
+  {
+   "name": "Costco Noblesville",
+   "city": "Noblesville",
+   "state": "IN",
+   "country": "US",
+   "lat": 40.003674,
+   "lng": -85.999289
+  },
+  {
+   "name": "Costco Lenexa",
+   "city": "Lenexa",
+   "state": "KS",
+   "country": "US",
+   "lat": 38.959508,
+   "lng": -94.730591
+  },
+  {
+   "name": "Costco Overland Park",
+   "city": "Overland Park",
+   "state": "KS",
+   "country": "US",
+   "lat": 38.906863,
+   "lng": -94.673348
+  },
+  {
+   "name": "Costco Wichita",
+   "city": "Wichita",
+   "state": "KS",
+   "country": "US",
+   "lat": 37.678189,
+   "lng": -97.198704
+  },
+  {
+   "name": "Costco Florence",
+   "city": "Florence",
+   "state": "KY",
+   "country": "US",
+   "lat": 38.987685,
+   "lng": -84.64892
+  },
+  {
+   "name": "Costco Lexington",
+   "city": "Lexington",
+   "state": "KY",
+   "country": "US",
+   "lat": 38.024635,
+   "lng": -84.411573
+  },
+  {
+   "name": "Costco Louisville",
+   "city": "Louisville",
+   "state": "KY",
+   "country": "US",
+   "lat": 38.205535,
+   "lng": -85.666674
+  },
+  {
+   "name": "Costco Louisville",
+   "city": "Louisville",
+   "state": "KY",
+   "country": "US",
+   "lat": 38.314239,
+   "lng": -85.57549
+  },
+  {
+   "name": "Costco Baton Rouge",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "country": "US",
+   "lat": 30.419937,
+   "lng": -91.072732
+  },
+  {
+   "name": "Costco Covington",
+   "city": "Covington",
+   "state": "LA",
+   "country": "US",
+   "lat": 30.445838,
+   "lng": -90.132784
+  },
+  {
+   "name": "Costco Lafayette",
+   "city": "Lafayette",
+   "state": "LA",
+   "country": "US",
+   "lat": 30.156349,
+   "lng": -92.042394
+  },
+  {
+   "name": "Costco New Orleans",
+   "city": "New Orleans",
+   "state": "LA",
+   "country": "US",
+   "lat": 29.967771,
+   "lng": -90.109908
+  },
+  {
+   "name": "Costco Avon",
+   "city": "Avon",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.135637,
+   "lng": -71.067414
+  },
+  {
+   "name": "Costco Danvers",
+   "city": "Danvers",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.559284,
+   "lng": -70.977925
+  },
+  {
+   "name": "Costco Dedham",
+   "city": "Dedham",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.232083,
+   "lng": -71.173051
+  },
+  {
+   "name": "Costco Everett",
+   "city": "Everett",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.395127,
+   "lng": -71.073978
+  },
+  {
+   "name": "Costco Waltham",
+   "city": "Waltham",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.393456,
+   "lng": -71.2648
+  },
+  {
+   "name": "Costco West Springfield",
+   "city": "West Springfield",
+   "state": "MA",
+   "country": "US",
+   "lat": 42.132129,
+   "lng": -72.621695
+  },
+  {
+   "name": "Costco Baltimore",
+   "city": "Baltimore",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.359167,
+   "lng": -76.447166
+  },
+  {
+   "name": "Costco Beltsville",
+   "city": "Beltsville",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.032794,
+   "lng": -76.91016
+  },
+  {
+   "name": "Costco Brandywine",
+   "city": "Brandywine",
+   "state": "MD",
+   "country": "US",
+   "lat": 38.667304,
+   "lng": -76.875558
+  },
+  {
+   "name": "Costco Elkridge",
+   "city": "Elkridge",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.186537,
+   "lng": -76.795154
+  },
+  {
+   "name": "Costco Frederick",
+   "city": "Frederick",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.402302,
+   "lng": -77.407553
+  },
+  {
+   "name": "Costco Gaithersburg",
+   "city": "Gaithersburg",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.157064,
+   "lng": -77.212701
+  },
+  {
+   "name": "Costco Glen Burnie",
+   "city": "Glen Burnie",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.195845,
+   "lng": -76.597772
+  },
+  {
+   "name": "Costco Glenarden",
+   "city": "Glenarden",
+   "state": "MD",
+   "country": "US",
+   "lat": 38.922445,
+   "lng": -76.850959
+  },
+  {
+   "name": "Costco Hanover",
+   "city": "Hanover",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.155161,
+   "lng": -76.728947
+  },
+  {
+   "name": "Costco Owings Mills",
+   "city": "Owings Mills",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.404192,
+   "lng": -76.788039
+  },
+  {
+   "name": "Costco Wheaton",
+   "city": "Wheaton",
+   "state": "MD",
+   "country": "US",
+   "lat": 39.039101,
+   "lng": -77.054081
+  },
+  {
+   "name": "Costco Scarborough",
+   "city": "Scarborough",
+   "state": "ME",
+   "country": "US",
+   "lat": 43.609028,
+   "lng": -70.357663
+  },
+  {
+   "name": "Costco Ann Arbor",
+   "city": "Ann Arbor",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.230194,
+   "lng": -83.745422
+  },
+  {
+   "name": "Costco Auburn Hills",
+   "city": "Auburn Hills",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.707393,
+   "lng": -83.293179
+  },
+  {
+   "name": "Costco Bloomfield",
+   "city": "Bloomfield",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.605269,
+   "lng": -83.294429
+  },
+  {
+   "name": "Costco Brighton",
+   "city": "Brighton",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.504715,
+   "lng": -83.759695
+  },
+  {
+   "name": "Costco Commerce Township",
+   "city": "Commerce Township",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.5345,
+   "lng": -83.447615
+  },
+  {
+   "name": "Costco East Lansing",
+   "city": "East Lansing",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.740838,
+   "lng": -84.515612
+  },
+  {
+   "name": "Costco Grand Rapids",
+   "city": "Grand Rapids",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.912624,
+   "lng": -85.542972
+  },
+  {
+   "name": "Costco Kalamazoo",
+   "city": "Kalamazoo",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.271009,
+   "lng": -85.649976
+  },
+  {
+   "name": "Costco Livonia",
+   "city": "Livonia",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.382596,
+   "lng": -83.333569
+  },
+  {
+   "name": "Costco Livonia",
+   "city": "Livonia",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.432409,
+   "lng": -83.433317
+  },
+  {
+   "name": "Costco Madison Heights",
+   "city": "Madison Heights",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.513066,
+   "lng": -83.118558
+  },
+  {
+   "name": "Costco Midland",
+   "city": "Midland",
+   "state": "MI",
+   "country": "US",
+   "lat": 43.604985,
+   "lng": -84.170684
+  },
+  {
+   "name": "Costco Roseville",
+   "city": "Roseville",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.496164,
+   "lng": -82.937027
+  },
+  {
+   "name": "Costco Shelby Township",
+   "city": "Shelby Township",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.631971,
+   "lng": -82.980806
+  },
+  {
+   "name": "Costco Southfield",
+   "city": "Southfield",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.447085,
+   "lng": -83.205263
+  },
+  {
+   "name": "Costco Traverse City",
+   "city": "Traverse City",
+   "state": "MI",
+   "country": "US",
+   "lat": 44.73488,
+   "lng": -85.571006
+  },
+  {
+   "name": "Costco Wyoming",
+   "city": "Wyoming",
+   "state": "MI",
+   "country": "US",
+   "lat": 42.876944,
+   "lng": -85.762623
+  },
+  {
+   "name": "Costco Baxter",
+   "city": "Baxter",
+   "state": "MN",
+   "country": "US",
+   "lat": 46.348502,
+   "lng": -94.248844
+  },
+  {
+   "name": "Costco Burnsville",
+   "city": "Burnsville",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.748035,
+   "lng": -93.293162
+  },
+  {
+   "name": "Costco Chaska",
+   "city": "Chaska",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.840494,
+   "lng": -93.604303
+  },
+  {
+   "name": "Costco Duluth",
+   "city": "Duluth",
+   "state": "MN",
+   "country": "US",
+   "lat": 46.822058,
+   "lng": -92.159841
+  },
+  {
+   "name": "Costco Eagan",
+   "city": "Eagan",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.859192,
+   "lng": -93.140824
+  },
+  {
+   "name": "Costco Eden Prairie",
+   "city": "Eden Prairie",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.862148,
+   "lng": -93.428888
+  },
+  {
+   "name": "Costco Maple Grove",
+   "city": "Maple Grove",
+   "state": "MN",
+   "country": "US",
+   "lat": 45.091831,
+   "lng": -93.425999
+  },
+  {
+   "name": "Costco Maplewood",
+   "city": "Maplewood",
+   "state": "MN",
+   "country": "US",
+   "lat": 45.028141,
+   "lng": -93.040852
+  },
+  {
+   "name": "Costco Minneapolis",
+   "city": "Minneapolis",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.999555,
+   "lng": -93.215668
+  },
+  {
+   "name": "Costco Minneapolis",
+   "city": "Minneapolis",
+   "state": "MN",
+   "country": "US",
+   "lat": 45.198007,
+   "lng": -93.350239
+  },
+  {
+   "name": "Costco Rochester",
+   "city": "Rochester",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.045223,
+   "lng": -92.518015
+  },
+  {
+   "name": "Costco Saint Cloud",
+   "city": "Saint Cloud",
+   "state": "MN",
+   "country": "US",
+   "lat": 45.54952,
+   "lng": -94.20412
+  },
+  {
+   "name": "Costco Saint Louis Park",
+   "city": "Saint Louis Park",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.967574,
+   "lng": -93.35316
+  },
+  {
+   "name": "Costco Woodbury",
+   "city": "Woodbury",
+   "state": "MN",
+   "country": "US",
+   "lat": 44.936522,
+   "lng": -92.963707
+  },
+  {
+   "name": "Costco Independence",
+   "city": "Independence",
+   "state": "MO",
+   "country": "US",
+   "lat": 39.035417,
+   "lng": -94.355778
+  },
+  {
+   "name": "Costco Kansas City",
+   "city": "Kansas City",
+   "state": "MO",
+   "country": "US",
+   "lat": 39.25339,
+   "lng": -94.559663
+  },
+  {
+   "name": "Costco Kansas City",
+   "city": "Kansas City",
+   "state": "MO",
+   "country": "US",
+   "lat": 39.068243,
+   "lng": -94.581079
+  },
+  {
+   "name": "Costco Manchester",
+   "city": "Manchester",
+   "state": "MO",
+   "country": "US",
+   "lat": 38.597613,
+   "lng": -90.507541,
+   "approx": true
+  },
+  {
+   "name": "Costco Saint Louis",
+   "city": "Saint Louis",
+   "state": "MO",
+   "country": "US",
+   "lat": 38.509779,
+   "lng": -90.340037
+  },
+  {
+   "name": "Costco Saint Louis",
+   "city": "Saint Louis",
+   "state": "MO",
+   "country": "US",
+   "lat": 38.674157,
+   "lng": -90.358534
+  },
+  {
+   "name": "Costco Saint Peters",
+   "city": "Saint Peters",
+   "state": "MO",
+   "country": "US",
+   "lat": 38.798401,
+   "lng": -90.608312
+  },
+  {
+   "name": "Costco Springfield",
+   "city": "Springfield",
+   "state": "MO",
+   "country": "US",
+   "lat": 37.208692,
+   "lng": -93.223159
+  },
+  {
+   "name": "Costco St. Louis",
+   "city": "St. Louis",
+   "state": "MO",
+   "country": "US",
+   "lat": 38.703561,
+   "lng": -90.334792
+  },
+  {
+   "name": "Costco Ridgeland",
+   "city": "Ridgeland",
+   "state": "MS",
+   "country": "US",
+   "lat": 32.421476,
+   "lng": -90.14914
+  },
+  {
+   "name": "Costco Billings",
+   "city": "Billings",
+   "state": "MT",
+   "country": "US",
+   "lat": 45.733957,
+   "lng": -108.615221
+  },
+  {
+   "name": "Costco Bozeman",
+   "city": "Bozeman",
+   "state": "MT",
+   "country": "US",
+   "lat": 45.712203,
+   "lng": -111.069203
+  },
+  {
+   "name": "Costco Helena",
+   "city": "Helena",
+   "state": "MT",
+   "country": "US",
+   "lat": 46.61664,
+   "lng": -111.999938
+  },
+  {
+   "name": "Costco Kalispell",
+   "city": "Kalispell",
+   "state": "MT",
+   "country": "US",
+   "lat": 48.235708,
+   "lng": -114.330559
+  },
+  {
+   "name": "Costco Kalispell",
+   "city": "Kalispell",
+   "state": "MT",
+   "country": "US",
+   "lat": 48.250855,
+   "lng": -114.32418
+  },
+  {
+   "name": "Costco Missoula",
+   "city": "Missoula",
+   "state": "MT",
+   "country": "US",
+   "lat": 46.894402,
+   "lng": -114.039109
+  },
+  {
+   "name": "Costco Apex",
+   "city": "Apex",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.747167,
+   "lng": -78.826446
+  },
+  {
+   "name": "Costco Charlotte",
+   "city": "Charlotte",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.163414,
+   "lng": -80.886189
+  },
+  {
+   "name": "Costco Durham",
+   "city": "Durham",
+   "state": "NC",
+   "country": "US",
+   "lat": 36.028338,
+   "lng": -78.917177
+  },
+  {
+   "name": "Costco Greensboro",
+   "city": "Greensboro",
+   "state": "NC",
+   "country": "US",
+   "lat": 36.05939,
+   "lng": -79.884139
+  },
+  {
+   "name": "Costco Matthews",
+   "city": "Matthews",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.126894,
+   "lng": -80.703962
+  },
+  {
+   "name": "Costco Mooresville",
+   "city": "Mooresville",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.582696,
+   "lng": -80.852007
+  },
+  {
+   "name": "Costco Raleigh",
+   "city": "Raleigh",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.819037,
+   "lng": -78.62427
+  },
+  {
+   "name": "Costco Raleigh",
+   "city": "Raleigh",
+   "state": "NC",
+   "country": "US",
+   "lat": 35.667049,
+   "lng": -78.697357
+  },
+  {
+   "name": "Costco Wilmington",
+   "city": "Wilmington",
+   "state": "NC",
+   "country": "US",
+   "lat": 34.247244,
+   "lng": -77.873866
+  },
+  {
+   "name": "Costco Winston Salem",
+   "city": "Winston Salem",
+   "state": "NC",
+   "country": "US",
+   "lat": 36.066922,
+   "lng": -80.317982
+  },
+  {
+   "name": "Costco Bismarck",
+   "city": "Bismarck",
+   "state": "ND",
+   "country": "US",
+   "lat": 46.866967,
+   "lng": -100.770546
+  },
+  {
+   "name": "Costco West Fargo",
+   "city": "West Fargo",
+   "state": "ND",
+   "country": "US",
+   "lat": 46.843203,
+   "lng": -96.913171
+  },
+  {
+   "name": "Costco La Vista",
+   "city": "La Vista",
+   "state": "NE",
+   "country": "US",
+   "lat": 41.178256,
+   "lng": -96.108262
+  },
+  {
+   "name": "Costco Lincoln",
+   "city": "Lincoln",
+   "state": "NE",
+   "country": "US",
+   "lat": 40.738548,
+   "lng": -96.698493
+  },
+  {
+   "name": "Costco Omaha",
+   "city": "Omaha",
+   "state": "NE",
+   "country": "US",
+   "lat": 41.265777,
+   "lng": -96.105025
+  },
+  {
+   "name": "Costco Omaha",
+   "city": "Omaha",
+   "state": "NE",
+   "country": "US",
+   "lat": 41.289121,
+   "lng": -96.192198
+  },
+  {
+   "name": "Costco Nashua",
+   "city": "Nashua",
+   "state": "NH",
+   "country": "US",
+   "lat": 42.703044,
+   "lng": -71.441161
+  },
+  {
+   "name": "Costco Bayonne",
+   "city": "Bayonne",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.672064,
+   "lng": -74.105407
+  },
+  {
+   "name": "Costco Brick",
+   "city": "Brick",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.056667,
+   "lng": -74.15349
+  },
+  {
+   "name": "Costco Bridgewater",
+   "city": "Bridgewater",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.563216,
+   "lng": -74.559496
+  },
+  {
+   "name": "Costco Cherry Hill",
+   "city": "Cherry Hill",
+   "state": "NJ",
+   "country": "US",
+   "lat": 39.926641,
+   "lng": -75.038705
+  },
+  {
+   "name": "Costco Clifton",
+   "city": "Clifton",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.831946,
+   "lng": -74.138794
+  },
+  {
+   "name": "Costco East Hanover",
+   "city": "East Hanover",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.809083,
+   "lng": -74.379476
+  },
+  {
+   "name": "Costco Edison",
+   "city": "Edison",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.528563,
+   "lng": -74.377163
+  },
+  {
+   "name": "Costco Flemington",
+   "city": "Flemington",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.5217,
+   "lng": -74.851648
+  },
+  {
+   "name": "Costco Hackensack",
+   "city": "Hackensack",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.875538,
+   "lng": -74.040678
+  },
+  {
+   "name": "Costco Hazlet",
+   "city": "Hazlet",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.417148,
+   "lng": -74.17033
+  },
+  {
+   "name": "Costco Lawrence Township",
+   "city": "Lawrence Township",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.279763,
+   "lng": -74.670907
+  },
+  {
+   "name": "Costco Morganville",
+   "city": "Morganville",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.35536,
+   "lng": -74.306645
+  },
+  {
+   "name": "Costco Mount Laurel",
+   "city": "Mount Laurel",
+   "state": "NJ",
+   "country": "US",
+   "lat": 39.950668,
+   "lng": -74.876136
+  },
+  {
+   "name": "Costco North Brunswick",
+   "city": "North Brunswick",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.435065,
+   "lng": -74.505285
+  },
+  {
+   "name": "Costco North Plainfield",
+   "city": "North Plainfield",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.611651,
+   "lng": -74.45943,
+   "approx": true
+  },
+  {
+   "name": "Costco Ocean",
+   "city": "Ocean",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.227531,
+   "lng": -74.044342
+  },
+  {
+   "name": "Costco Stafford Township",
+   "city": "Stafford Township",
+   "state": "NJ",
+   "country": "US",
+   "lat": 39.709962,
+   "lng": -74.286678
+  },
+  {
+   "name": "Costco Teterboro",
+   "city": "Teterboro",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.860669,
+   "lng": -74.064501
+  },
+  {
+   "name": "Costco Union",
+   "city": "Union",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.693465,
+   "lng": -74.290164
+  },
+  {
+   "name": "Costco Wayne",
+   "city": "Wayne",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.890757,
+   "lng": -74.249953
+  },
+  {
+   "name": "Costco Wharton",
+   "city": "Wharton",
+   "state": "NJ",
+   "country": "US",
+   "lat": 40.940201,
+   "lng": -74.592713
+  },
+  {
+   "name": "Costco Albuquerque",
+   "city": "Albuquerque",
+   "state": "NM",
+   "country": "US",
+   "lat": 35.196244,
+   "lng": -106.659299
+  },
+  {
+   "name": "Costco Albuquerque",
+   "city": "Albuquerque",
+   "state": "NM",
+   "country": "US",
+   "lat": 35.137413,
+   "lng": -106.612902
+  },
+  {
+   "name": "Costco Albuquerque",
+   "city": "Albuquerque",
+   "state": "NM",
+   "country": "US",
+   "lat": 35.069002,
+   "lng": -106.532423
+  },
+  {
+   "name": "Costco Carson City",
+   "city": "Carson City",
+   "state": "NV",
+   "country": "US",
+   "lat": 39.112686,
+   "lng": -119.846887
+  },
+  {
+   "name": "Costco Henderson",
+   "city": "Henderson",
+   "state": "NV",
+   "country": "US",
+   "lat": 35.990521,
+   "lng": -115.137177
+  },
+  {
+   "name": "Costco Henderson",
+   "city": "Henderson",
+   "state": "NV",
+   "country": "US",
+   "lat": 36.07083,
+   "lng": -115.038562
+  },
+  {
+   "name": "Costco Las Vegas",
+   "city": "Las Vegas",
+   "state": "NV",
+   "country": "US",
+   "lat": 36.171246,
+   "lng": -115.160869
+  },
+  {
+   "name": "Costco Las Vegas",
+   "city": "Las Vegas",
+   "state": "NV",
+   "country": "US",
+   "lat": 36.27951,
+   "lng": -115.206587
+  },
+  {
+   "name": "Costco Las Vegas",
+   "city": "Las Vegas",
+   "state": "NV",
+   "country": "US",
+   "lat": 36.163133,
+   "lng": -115.331781
+  },
+  {
+   "name": "Costco Reno",
+   "city": "Reno",
+   "state": "NV",
+   "country": "US",
+   "lat": 39.502906,
+   "lng": -119.785723
+  },
+  {
+   "name": "Costco Sparks",
+   "city": "Sparks",
+   "state": "NV",
+   "country": "US",
+   "lat": 39.577695,
+   "lng": -119.740134
+  },
+  {
+   "name": "Costco Brooklyn",
+   "city": "Brooklyn",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.655308,
+   "lng": -74.00703
+  },
+  {
+   "name": "Costco Camillus",
+   "city": "Camillus",
+   "state": "NY",
+   "country": "US",
+   "lat": 43.055302,
+   "lng": -76.266903
+  },
+  {
+   "name": "Costco Commack",
+   "city": "Commack",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.806546,
+   "lng": -73.28899
+  },
+  {
+   "name": "Costco Holbrook",
+   "city": "Holbrook",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.773968,
+   "lng": -73.051519
+  },
+  {
+   "name": "Costco Lawrence",
+   "city": "Lawrence",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.630867,
+   "lng": -73.738335
+  },
+  {
+   "name": "Costco Long Island City",
+   "city": "Long Island City",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.766914,
+   "lng": -73.938513
+  },
+  {
+   "name": "Costco Melville",
+   "city": "Melville",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.757569,
+   "lng": -73.420241
+  },
+  {
+   "name": "Costco Nanuet",
+   "city": "Nanuet",
+   "state": "NY",
+   "country": "US",
+   "lat": 41.108173,
+   "lng": -74.025388
+  },
+  {
+   "name": "Costco Nesconset",
+   "city": "Nesconset",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.86202,
+   "lng": -73.131736
+  },
+  {
+   "name": "Costco New Rochelle",
+   "city": "New Rochelle",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.89713,
+   "lng": -73.793611
+  },
+  {
+   "name": "Costco New York",
+   "city": "New York",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.795669,
+   "lng": -73.932365
+  },
+  {
+   "name": "Costco Oceanside",
+   "city": "Oceanside",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.61933,
+   "lng": -73.651409
+  },
+  {
+   "name": "Costco Port Chester",
+   "city": "Port Chester",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.999284,
+   "lng": -73.661761
+  },
+  {
+   "name": "Costco Rego Park",
+   "city": "Rego Park",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.733123,
+   "lng": -73.863944
+  },
+  {
+   "name": "Costco Riverhead",
+   "city": "Riverhead",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.926671,
+   "lng": -72.68982
+  },
+  {
+   "name": "Costco Rochester",
+   "city": "Rochester",
+   "state": "NY",
+   "country": "US",
+   "lat": 43.114794,
+   "lng": -77.611739
+  },
+  {
+   "name": "Costco Staten Island",
+   "city": "Staten Island",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.572662,
+   "lng": -74.169809
+  },
+  {
+   "name": "Costco Westbury",
+   "city": "Westbury",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.743808,
+   "lng": -73.597708
+  },
+  {
+   "name": "Costco Yonkers",
+   "city": "Yonkers",
+   "state": "NY",
+   "country": "US",
+   "lat": 40.973369,
+   "lng": -73.863214
+  },
+  {
+   "name": "Costco Avon",
+   "city": "Avon",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.458245,
+   "lng": -82.014973
+  },
+  {
+   "name": "Costco Boston Heights",
+   "city": "Boston Heights",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.265526,
+   "lng": -81.50745
+  },
+  {
+   "name": "Costco Centerville",
+   "city": "Centerville",
+   "state": "OH",
+   "country": "US",
+   "lat": 39.663058,
+   "lng": -84.10592
+  },
+  {
+   "name": "Costco Cincinnati",
+   "city": "Cincinnati",
+   "state": "OH",
+   "country": "US",
+   "lat": 39.296072,
+   "lng": -84.301822
+  },
+  {
+   "name": "Costco Cleveland",
+   "city": "Cleveland",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.522341,
+   "lng": -81.449609
+  },
+  {
+   "name": "Costco Columbus",
+   "city": "Columbus",
+   "state": "OH",
+   "country": "US",
+   "lat": 40.148535,
+   "lng": -82.979627
+  },
+  {
+   "name": "Costco Columbus",
+   "city": "Columbus",
+   "state": "OH",
+   "country": "US",
+   "lat": 40.052745,
+   "lng": -82.908857
+  },
+  {
+   "name": "Costco Liberty Township",
+   "city": "Liberty Township",
+   "state": "OH",
+   "country": "US",
+   "lat": 39.369404,
+   "lng": -84.359123
+  },
+  {
+   "name": "Costco North Canton",
+   "city": "North Canton",
+   "state": "OH",
+   "country": "US",
+   "lat": 40.886632,
+   "lng": -81.439892
+  },
+  {
+   "name": "Costco Perrysburg",
+   "city": "Perrysburg",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.534111,
+   "lng": -83.632862
+  },
+  {
+   "name": "Costco Plain City",
+   "city": "Plain City",
+   "state": "OH",
+   "country": "US",
+   "lat": 40.106085,
+   "lng": -83.25418
+  },
+  {
+   "name": "Costco Strongsville",
+   "city": "Strongsville",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.313154,
+   "lng": -81.816203
+  },
+  {
+   "name": "Costco Toledo",
+   "city": "Toledo",
+   "state": "OH",
+   "country": "US",
+   "lat": 41.677276,
+   "lng": -83.625447
+  },
+  {
+   "name": "Costco Moore",
+   "city": "Moore",
+   "state": "OK",
+   "country": "US",
+   "lat": 35.314028,
+   "lng": -97.49448
+  },
+  {
+   "name": "Costco Oklahoma City",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "country": "US",
+   "lat": 35.604048,
+   "lng": -97.531516
+  },
+  {
+   "name": "Costco Tulsa",
+   "city": "Tulsa",
+   "state": "OK",
+   "country": "US",
+   "lat": 36.016254,
+   "lng": -95.886673
+  },
+  {
+   "name": "Costco Tulsa",
+   "city": "Tulsa",
+   "state": "OK",
+   "country": "US",
+   "lat": 36.222415,
+   "lng": -95.849504
+  },
+  {
+   "name": "Costco Albany",
+   "city": "Albany",
+   "state": "OR",
+   "country": "US",
+   "lat": 44.639074,
+   "lng": -123.066676
+  },
+  {
+   "name": "Costco Aloha",
+   "city": "Aloha",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.507603,
+   "lng": -122.840654
+  },
+  {
+   "name": "Costco Bend",
+   "city": "Bend",
+   "state": "OR",
+   "country": "US",
+   "lat": 44.106353,
+   "lng": -121.303845
+  },
+  {
+   "name": "Costco Central Point",
+   "city": "Central Point",
+   "state": "OR",
+   "country": "US",
+   "lat": 42.375312,
+   "lng": -122.88909
+  },
+  {
+   "name": "Costco Clackamas",
+   "city": "Clackamas",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.42793,
+   "lng": -122.575743
+  },
+  {
+   "name": "Costco Eugene",
+   "city": "Eugene",
+   "state": "OR",
+   "country": "US",
+   "lat": 44.090111,
+   "lng": -123.066211
+  },
+  {
+   "name": "Costco Hillsboro",
+   "city": "Hillsboro",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.535358,
+   "lng": -122.933742
+  },
+  {
+   "name": "Costco Portland",
+   "city": "Portland",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.557983,
+   "lng": -122.521212
+  },
+  {
+   "name": "Costco Roseburg",
+   "city": "Roseburg",
+   "state": "OR",
+   "country": "US",
+   "lat": 43.259603,
+   "lng": -123.351346
+  },
+  {
+   "name": "Costco Salem",
+   "city": "Salem",
+   "state": "OR",
+   "country": "US",
+   "lat": 44.884365,
+   "lng": -123.005255
+  },
+  {
+   "name": "Costco Tigard",
+   "city": "Tigard",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.434564,
+   "lng": -122.756236
+  },
+  {
+   "name": "Costco Warrenton",
+   "city": "Warrenton",
+   "state": "OR",
+   "country": "US",
+   "lat": 46.147226,
+   "lng": -123.917155
+  },
+  {
+   "name": "Costco Wilsonville",
+   "city": "Wilsonville",
+   "state": "OR",
+   "country": "US",
+   "lat": 45.333144,
+   "lng": -122.766029
+  },
+  {
+   "name": "Costco Allentown",
+   "city": "Allentown",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.56271,
+   "lng": -75.567675
+  },
+  {
+   "name": "Costco Cranberry Township",
+   "city": "Cranberry Township",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.683585,
+   "lng": -80.126626
+  },
+  {
+   "name": "Costco Glen Mills",
+   "city": "Glen Mills",
+   "state": "PA",
+   "country": "US",
+   "lat": 39.886854,
+   "lng": -75.532127
+  },
+  {
+   "name": "Costco Harrisburg",
+   "city": "Harrisburg",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.311615,
+   "lng": -76.801018
+  },
+  {
+   "name": "Costco Homestead",
+   "city": "Homestead",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.404341,
+   "lng": -79.920504
+  },
+  {
+   "name": "Costco King Of Prussia",
+   "city": "King Of Prussia",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.092787,
+   "lng": -75.3868
+  },
+  {
+   "name": "Costco Lancaster",
+   "city": "Lancaster",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.048924,
+   "lng": -76.350326
+  },
+  {
+   "name": "Costco North Wales",
+   "city": "North Wales",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.238946,
+   "lng": -75.235692
+  },
+  {
+   "name": "Costco Pittsburgh",
+   "city": "Pittsburgh",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.45965,
+   "lng": -80.165024
+  },
+  {
+   "name": "Costco Pottstown",
+   "city": "Pottstown",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.236556,
+   "lng": -75.575339
+  },
+  {
+   "name": "Costco Warminster",
+   "city": "Warminster",
+   "state": "PA",
+   "country": "US",
+   "lat": 40.198294,
+   "lng": -75.078504
+  },
+  {
+   "name": "Costco Bayamon",
+   "city": "Bayamon",
+   "state": "PR",
+   "country": "US",
+   "lat": 18.391039,
+   "lng": -66.181058
+  },
+  {
+   "name": "Costco Bayamon",
+   "city": "Bayamon",
+   "state": "PR",
+   "country": "US",
+   "lat": 18.396089,
+   "lng": -66.155588
+  },
+  {
+   "name": "Costco San Juan",
+   "city": "San Juan",
+   "state": "PR",
+   "country": "US",
+   "lat": 18.400216,
+   "lng": -65.997953,
+   "approx": true
+  },
+  {
+   "name": "Costco San Juan",
+   "city": "San Juan",
+   "state": "PR",
+   "country": "US",
+   "lat": 18.400216,
+   "lng": -65.997953,
+   "approx": true
+  },
+  {
+   "name": "Costco Charleston",
+   "city": "Charleston",
+   "state": "SC",
+   "country": "US",
+   "lat": 32.793515,
+   "lng": -80.036178
+  },
+  {
+   "name": "Costco Columbia",
+   "city": "Columbia",
+   "state": "SC",
+   "country": "US",
+   "lat": 34.068369,
+   "lng": -81.139441
+  },
+  {
+   "name": "Costco Greenville",
+   "city": "Greenville",
+   "state": "SC",
+   "country": "US",
+   "lat": 34.835155,
+   "lng": -82.311523
+  },
+  {
+   "name": "Costco Mount Pleasant",
+   "city": "Mount Pleasant",
+   "state": "SC",
+   "country": "US",
+   "lat": 32.88263,
+   "lng": -79.769892
+  },
+  {
+   "name": "Costco Myrtle Beach",
+   "city": "Myrtle Beach",
+   "state": "SC",
+   "country": "US",
+   "lat": 33.705276,
+   "lng": -78.915934
+  },
+  {
+   "name": "Costco Spartanburg",
+   "city": "Spartanburg",
+   "state": "SC",
+   "country": "US",
+   "lat": 34.943299,
+   "lng": -81.993307
+  },
+  {
+   "name": "Costco Sioux Falls",
+   "city": "Sioux Falls",
+   "state": "SD",
+   "country": "US",
+   "lat": 43.511358,
+   "lng": -96.740756
+  },
+  {
+   "name": "Costco Brentwood",
+   "city": "Brentwood",
+   "state": "TN",
+   "country": "US",
+   "lat": 35.962568,
+   "lng": -86.819628
+  },
+  {
+   "name": "Costco Cordova",
+   "city": "Cordova",
+   "state": "TN",
+   "country": "US",
+   "lat": 35.191704,
+   "lng": -89.792665
+  },
+  {
+   "name": "Costco Hendersonville",
+   "city": "Hendersonville",
+   "state": "TN",
+   "country": "US",
+   "lat": 36.32731,
+   "lng": -86.624984
+  },
+  {
+   "name": "Costco Knoxville",
+   "city": "Knoxville",
+   "state": "TN",
+   "country": "US",
+   "lat": 35.892385,
+   "lng": -84.14467
+  },
+  {
+   "name": "Costco Memphis",
+   "city": "Memphis",
+   "state": "TN",
+   "country": "US",
+   "lat": 35.0447,
+   "lng": -89.796021
+  },
+  {
+   "name": "Costco Mt. Juliet",
+   "city": "Mt. Juliet",
+   "state": "TN",
+   "country": "US",
+   "lat": 36.181998,
+   "lng": -86.461111
+  },
+  {
+   "name": "Costco Murfreesboro",
+   "city": "Murfreesboro",
+   "state": "TN",
+   "country": "US",
+   "lat": 35.826922,
+   "lng": -86.420545,
+   "approx": true
+  },
+  {
+   "name": "Costco Nashville",
+   "city": "Nashville",
+   "state": "TN",
+   "country": "US",
+   "lat": 36.136779,
+   "lng": -86.883623
+  },
+  {
+   "name": "Costco Arlington",
+   "city": "Arlington",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.684599,
+   "lng": -97.110066
+  },
+  {
+   "name": "Costco Austin",
+   "city": "Austin",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.394514,
+   "lng": -97.745869
+  },
+  {
+   "name": "Costco Austin",
+   "city": "Austin",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.221997,
+   "lng": -97.838677
+  },
+  {
+   "name": "Costco Cedar Park",
+   "city": "Cedar Park",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.527674,
+   "lng": -97.819581
+  },
+  {
+   "name": "Costco College Station",
+   "city": "College Station",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.563688,
+   "lng": -96.26264
+  },
+  {
+   "name": "Costco Conroe",
+   "city": "Conroe",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.207821,
+   "lng": -95.453906
+  },
+  {
+   "name": "Costco Cypress",
+   "city": "Cypress",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.979498,
+   "lng": -95.712227
+  },
+  {
+   "name": "Costco Dallas",
+   "city": "Dallas",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.918092,
+   "lng": -96.767905
+  },
+  {
+   "name": "Costco Dallas",
+   "city": "Dallas",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.87134,
+   "lng": -96.762961
+  },
+  {
+   "name": "Costco Duncanville",
+   "city": "Duncanville",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.622715,
+   "lng": -96.910068
+  },
+  {
+   "name": "Costco El Paso",
+   "city": "El Paso",
+   "state": "TX",
+   "country": "US",
+   "lat": 31.78175,
+   "lng": -106.409524
+  },
+  {
+   "name": "Costco Fort Worth",
+   "city": "Fort Worth",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.89967,
+   "lng": -97.321632
+  },
+  {
+   "name": "Costco Fort Worth",
+   "city": "Fort Worth",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.676501,
+   "lng": -97.407619
+  },
+  {
+   "name": "Costco Frisco",
+   "city": "Frisco",
+   "state": "TX",
+   "country": "US",
+   "lat": 33.170213,
+   "lng": -96.839281
+  },
+  {
+   "name": "Costco Georgetown",
+   "city": "Georgetown",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.650505,
+   "lng": -97.679857
+  },
+  {
+   "name": "Costco Houston",
+   "city": "Houston",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.732737,
+   "lng": -95.439274
+  },
+  {
+   "name": "Costco Houston",
+   "city": "Houston",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.787803,
+   "lng": -95.531246
+  },
+  {
+   "name": "Costco Houston",
+   "city": "Houston",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.953628,
+   "lng": -95.546751
+  },
+  {
+   "name": "Costco Humble",
+   "city": "Humble",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.022676,
+   "lng": -95.270543
+  },
+  {
+   "name": "Costco Katy",
+   "city": "Katy",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.784806,
+   "lng": -95.781725
+  },
+  {
+   "name": "Costco Kyle",
+   "city": "Kyle",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.985233,
+   "lng": -97.872394
+  },
+  {
+   "name": "Costco Lewisville",
+   "city": "Lewisville",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.998397,
+   "lng": -96.96406,
+   "approx": true
+  },
+  {
+   "name": "Costco Lubbock",
+   "city": "Lubbock",
+   "state": "TX",
+   "country": "US",
+   "lat": 33.56332,
+   "lng": -101.946955
+  },
+  {
+   "name": "Costco Mckinney",
+   "city": "Mckinney",
+   "state": "TX",
+   "country": "US",
+   "lat": 33.217464,
+   "lng": -96.659964
+  },
+  {
+   "name": "Costco Pearland",
+   "city": "Pearland",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.544424,
+   "lng": -95.389629
+  },
+  {
+   "name": "Costco Pflugerville",
+   "city": "Pflugerville",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.471377,
+   "lng": -97.590928
+  },
+  {
+   "name": "Costco Pharr",
+   "city": "Pharr",
+   "state": "TX",
+   "country": "US",
+   "lat": 26.193416,
+   "lng": -98.19927
+  },
+  {
+   "name": "Costco Plano",
+   "city": "Plano",
+   "state": "TX",
+   "country": "US",
+   "lat": 33.044909,
+   "lng": -96.700006
+  },
+  {
+   "name": "Costco Plano",
+   "city": "Plano",
+   "state": "TX",
+   "country": "US",
+   "lat": 33.024459,
+   "lng": -96.831074
+  },
+  {
+   "name": "Costco Richmond",
+   "city": "Richmond",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.647606,
+   "lng": -95.705364
+  },
+  {
+   "name": "Costco Rockwall",
+   "city": "Rockwall",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.9071,
+   "lng": -96.447024
+  },
+  {
+   "name": "Costco San Antonio",
+   "city": "San Antonio",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.214485,
+   "lng": -98.500177
+  },
+  {
+   "name": "Costco San Antonio",
+   "city": "San Antonio",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.609143,
+   "lng": -98.508857
+  },
+  {
+   "name": "Costco San Antonio",
+   "city": "San Antonio",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.575339,
+   "lng": -98.595673
+  },
+  {
+   "name": "Costco Selma",
+   "city": "Selma",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.577819,
+   "lng": -98.319064
+  },
+  {
+   "name": "Costco Southlake",
+   "city": "Southlake",
+   "state": "TX",
+   "country": "US",
+   "lat": 32.941254,
+   "lng": -97.112144
+  },
+  {
+   "name": "Costco Stafford",
+   "city": "Stafford",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.63742,
+   "lng": -95.576337
+  },
+  {
+   "name": "Costco Sugar Land",
+   "city": "Sugar Land",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.585486,
+   "lng": -95.64348
+  },
+  {
+   "name": "Costco Tomball",
+   "city": "Tomball",
+   "state": "TX",
+   "country": "US",
+   "lat": 30.069745,
+   "lng": -95.621175
+  },
+  {
+   "name": "Costco Webster",
+   "city": "Webster",
+   "state": "TX",
+   "country": "US",
+   "lat": 29.533411,
+   "lng": -95.1372
+  },
+  {
+   "name": "Costco Lehi",
+   "city": "Lehi",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.390019,
+   "lng": -111.830085
+  },
+  {
+   "name": "Costco Logan",
+   "city": "Logan",
+   "state": "UT",
+   "country": "US",
+   "lat": 41.75362,
+   "lng": -111.858854
+  },
+  {
+   "name": "Costco Murray",
+   "city": "Murray",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.659291,
+   "lng": -111.889468
+  },
+  {
+   "name": "Costco Ogden",
+   "city": "Ogden",
+   "state": "UT",
+   "country": "US",
+   "lat": 41.196392,
+   "lng": -111.97938
+  },
+  {
+   "name": "Costco Orem",
+   "city": "Orem",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.28229,
+   "lng": -111.680158
+  },
+  {
+   "name": "Costco Riverton",
+   "city": "Riverton",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.512738,
+   "lng": -112.002674,
+   "approx": true
+  },
+  {
+   "name": "Costco Saint George",
+   "city": "Saint George",
+   "state": "UT",
+   "country": "US",
+   "lat": 37.123338,
+   "lng": -113.520836
+  },
+  {
+   "name": "Costco Salt Lake City",
+   "city": "Salt Lake City",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.730406,
+   "lng": -111.899728
+  },
+  {
+   "name": "Costco Salt Lake City",
+   "city": "Salt Lake City",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.690836,
+   "lng": -111.957912
+  },
+  {
+   "name": "Costco Sandy",
+   "city": "Sandy",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.54731,
+   "lng": -111.89168
+  },
+  {
+   "name": "Costco Saratoga Springs",
+   "city": "Saratoga Springs",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.382353,
+   "lng": -111.916468
+  },
+  {
+   "name": "Costco South Jordan",
+   "city": "South Jordan",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.561181,
+   "lng": -111.976569
+  },
+  {
+   "name": "Costco Spanish Fork",
+   "city": "Spanish Fork",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.122734,
+   "lng": -111.649548
+  },
+  {
+   "name": "Costco West Bountiful",
+   "city": "West Bountiful",
+   "state": "UT",
+   "country": "US",
+   "lat": 40.895209,
+   "lng": -111.882646
+  },
+  {
+   "name": "Costco Alexandria",
+   "city": "Alexandria",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.741672,
+   "lng": -77.08626
+  },
+  {
+   "name": "Costco Arlington",
+   "city": "Arlington",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.861692,
+   "lng": -77.056622
+  },
+  {
+   "name": "Costco Chantilly",
+   "city": "Chantilly",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.89665,
+   "lng": -77.444529
+  },
+  {
+   "name": "Costco Charlottesville",
+   "city": "Charlottesville",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.067843,
+   "lng": -78.491543
+  },
+  {
+   "name": "Costco Fairfax",
+   "city": "Fairfax",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.850385,
+   "lng": -77.37286
+  },
+  {
+   "name": "Costco Fredericksburg",
+   "city": "Fredericksburg",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.295113,
+   "lng": -77.515592
+  },
+  {
+   "name": "Costco Glen Allen",
+   "city": "Glen Allen",
+   "state": "VA",
+   "country": "US",
+   "lat": 37.641307,
+   "lng": -77.561619
+  },
+  {
+   "name": "Costco Harrisonburg",
+   "city": "Harrisonburg",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.426713,
+   "lng": -78.85549
+  },
+  {
+   "name": "Costco Leesburg",
+   "city": "Leesburg",
+   "state": "VA",
+   "country": "US",
+   "lat": 39.113809,
+   "lng": -77.533419
+  },
+  {
+   "name": "Costco Manassas",
+   "city": "Manassas",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.786672,
+   "lng": -77.51617
+  },
+  {
+   "name": "Costco Newport News",
+   "city": "Newport News",
+   "state": "VA",
+   "country": "US",
+   "lat": 37.106211,
+   "lng": -76.494947
+  },
+  {
+   "name": "Costco Norfolk",
+   "city": "Norfolk",
+   "state": "VA",
+   "country": "US",
+   "lat": 36.851308,
+   "lng": -76.200291
+  },
+  {
+   "name": "Costco North Chesterfield",
+   "city": "North Chesterfield",
+   "state": "VA",
+   "country": "US",
+   "lat": 37.514521,
+   "lng": -77.605176
+  },
+  {
+   "name": "Costco Springfield",
+   "city": "Springfield",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.739385,
+   "lng": -77.199646
+  },
+  {
+   "name": "Costco Sterling",
+   "city": "Sterling",
+   "state": "VA",
+   "country": "US",
+   "lat": 39.023191,
+   "lng": -77.402361
+  },
+  {
+   "name": "Costco Winchester",
+   "city": "Winchester",
+   "state": "VA",
+   "country": "US",
+   "lat": 39.158072,
+   "lng": -78.158312
+  },
+  {
+   "name": "Costco Woodbridge",
+   "city": "Woodbridge",
+   "state": "VA",
+   "country": "US",
+   "lat": 38.646289,
+   "lng": -77.294168
+  },
+  {
+   "name": "Costco Colchester",
+   "city": "Colchester",
+   "state": "VT",
+   "country": "US",
+   "lat": 44.507491,
+   "lng": -73.181266
+  },
+  {
+   "name": "Costco Bellingham",
+   "city": "Bellingham",
+   "state": "WA",
+   "country": "US",
+   "lat": 48.790634,
+   "lng": -122.512909
+  },
+  {
+   "name": "Costco Bonney Lake",
+   "city": "Bonney Lake",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.168599,
+   "lng": -122.157107
+  },
+  {
+   "name": "Costco Burlington",
+   "city": "Burlington",
+   "state": "WA",
+   "country": "US",
+   "lat": 48.455499,
+   "lng": -122.335732
+  },
+  {
+   "name": "Costco Camas",
+   "city": "Camas",
+   "state": "WA",
+   "country": "US",
+   "lat": 45.621358,
+   "lng": -122.47175
+  },
+  {
+   "name": "Costco Clarkston",
+   "city": "Clarkston",
+   "state": "WA",
+   "country": "US",
+   "lat": 46.422897,
+   "lng": -117.044204
+  },
+  {
+   "name": "Costco Covington",
+   "city": "Covington",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.35484,
+   "lng": -122.122912
+  },
+  {
+   "name": "Costco East Wenatchee",
+   "city": "East Wenatchee",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.400502,
+   "lng": -120.28164
+  },
+  {
+   "name": "Costco Everett",
+   "city": "Everett",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.903552,
+   "lng": -122.207033
+  },
+  {
+   "name": "Costco Federal Way",
+   "city": "Federal Way",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.287322,
+   "lng": -122.313407
+  },
+  {
+   "name": "Costco Fife",
+   "city": "Fife",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.238944,
+   "lng": -122.375602
+  },
+  {
+   "name": "Costco Gig Harbor",
+   "city": "Gig Harbor",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.355121,
+   "lng": -122.599993
+  },
+  {
+   "name": "Costco Issaquah",
+   "city": "Issaquah",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.550768,
+   "lng": -122.04991
+  },
+  {
+   "name": "Costco Kennewick",
+   "city": "Kennewick",
+   "state": "WA",
+   "country": "US",
+   "lat": 46.227071,
+   "lng": -119.235408
+  },
+  {
+   "name": "Costco Kirkland",
+   "city": "Kirkland",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.680474,
+   "lng": -122.180673
+  },
+  {
+   "name": "Costco Lacey",
+   "city": "Lacey",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.060809,
+   "lng": -122.764721
+  },
+  {
+   "name": "Costco Lake Stevens",
+   "city": "Lake Stevens",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.974923,
+   "lng": -122.106434
+  },
+  {
+   "name": "Costco Lynnwood",
+   "city": "Lynnwood",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.825812,
+   "lng": -122.311014
+  },
+  {
+   "name": "Costco Lynnwood",
+   "city": "Lynnwood",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.83229,
+   "lng": -122.277628
+  },
+  {
+   "name": "Costco Marysville",
+   "city": "Marysville",
+   "state": "WA",
+   "country": "US",
+   "lat": 48.14729,
+   "lng": -122.188666
+  },
+  {
+   "name": "Costco Puyallup",
+   "city": "Puyallup",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.154895,
+   "lng": -122.303478
+  },
+  {
+   "name": "Costco Redmond",
+   "city": "Redmond",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.666525,
+   "lng": -122.087581
+  },
+  {
+   "name": "Costco Ridgefield",
+   "city": "Ridgefield",
+   "state": "WA",
+   "country": "US",
+   "lat": 45.812345,
+   "lng": -122.691298
+  },
+  {
+   "name": "Costco Seattle",
+   "city": "Seattle",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.565319,
+   "lng": -122.329513
+  },
+  {
+   "name": "Costco Sequim",
+   "city": "Sequim",
+   "state": "WA",
+   "country": "US",
+   "lat": 48.078798,
+   "lng": -123.125512
+  },
+  {
+   "name": "Costco Shoreline",
+   "city": "Shoreline",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.77455,
+   "lng": -122.343111
+  },
+  {
+   "name": "Costco Silverdale",
+   "city": "Silverdale",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.655024,
+   "lng": -122.682204
+  },
+  {
+   "name": "Costco Spokane",
+   "city": "Spokane",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.767018,
+   "lng": -117.384932
+  },
+  {
+   "name": "Costco Spokane",
+   "city": "Spokane",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.65717,
+   "lng": -117.329948
+  },
+  {
+   "name": "Costco Tacoma",
+   "city": "Tacoma",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.223333,
+   "lng": -122.466655
+  },
+  {
+   "name": "Costco Tukwila",
+   "city": "Tukwila",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.44471,
+   "lng": -122.25096
+  },
+  {
+   "name": "Costco Tumwater",
+   "city": "Tumwater",
+   "state": "WA",
+   "country": "US",
+   "lat": 46.998037,
+   "lng": -122.916895
+  },
+  {
+   "name": "Costco Union Gap",
+   "city": "Union Gap",
+   "state": "WA",
+   "country": "US",
+   "lat": 46.569983,
+   "lng": -120.496173
+  },
+  {
+   "name": "Costco Vancouver",
+   "city": "Vancouver",
+   "state": "WA",
+   "country": "US",
+   "lat": 45.683937,
+   "lng": -122.603664
+  },
+  {
+   "name": "Costco Woodinville",
+   "city": "Woodinville",
+   "state": "WA",
+   "country": "US",
+   "lat": 47.779444,
+   "lng": -122.146585
+  },
+  {
+   "name": "Costco Bellevue",
+   "city": "Bellevue",
+   "state": "WI",
+   "country": "US",
+   "lat": 44.458552,
+   "lng": -87.987625
+  },
+  {
+   "name": "Costco Eau Claire",
+   "city": "Eau Claire",
+   "state": "WI",
+   "country": "US",
+   "lat": 44.830555,
+   "lng": -91.451219
+  },
+  {
+   "name": "Costco Grafton",
+   "city": "Grafton",
+   "state": "WI",
+   "country": "US",
+   "lat": 43.310362,
+   "lng": -87.924897
+  },
+  {
+   "name": "Costco Grand Chute",
+   "city": "Grand Chute",
+   "state": "WI",
+   "country": "US",
+   "lat": 44.271717,
+   "lng": -88.486539
+  },
+  {
+   "name": "Costco Menomonee Falls",
+   "city": "Menomonee Falls",
+   "state": "WI",
+   "country": "US",
+   "lat": 43.185784,
+   "lng": -88.112529
+  },
+  {
+   "name": "Costco Middleton",
+   "city": "Middleton",
+   "state": "WI",
+   "country": "US",
+   "lat": 43.098596,
+   "lng": -89.521822
+  },
+  {
+   "name": "Costco New Berlin",
+   "city": "New Berlin",
+   "state": "WI",
+   "country": "US",
+   "lat": 42.944573,
+   "lng": -88.105002
+  },
+  {
+   "name": "Costco Pewaukee",
+   "city": "Pewaukee",
+   "state": "WI",
+   "country": "US",
+   "lat": 43.08951,
+   "lng": -88.231634
+  },
+  {
+   "name": "Costco Pleasant Prairie",
+   "city": "Pleasant Prairie",
+   "state": "WI",
+   "country": "US",
+   "lat": 42.565346,
+   "lng": -87.921421
+  },
+  {
+   "name": "Costco Sun Prairie",
+   "city": "Sun Prairie",
+   "state": "WI",
+   "country": "US",
+   "lat": 43.167864,
+   "lng": -89.271584
+  },
+  {
+   "name": "Costco Verona",
+   "city": "Verona",
+   "state": "WI",
+   "country": "US",
+   "lat": 42.970293,
+   "lng": -89.511022
+  }
+ ]
 }

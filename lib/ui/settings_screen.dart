@@ -162,7 +162,10 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 18),
           Text(
               'COST-GO v0.2 · UNAFFILIATED WITH COSTCO WHOLESALE. '
-              'THE DAILY CART IS AN INDEPENDENT PAPER.',
+              'THE DAILY CART IS AN INDEPENDENT PAPER.\n'
+              'WAREHOUSE COORDINATES: US CENSUS BUREAU GEOCODER + '
+              '© OPENSTREETMAP CONTRIBUTORS (ODBL). LOCATION IS ONLY READ '
+              'WHEN YOU TAP TO CHECK, AND NEVER LEAVES THE PHONE.',
               style: News.mono(8, color: NewsInk.grayFaint, spacing: 1)),
         ],
       ),

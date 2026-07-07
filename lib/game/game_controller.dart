@@ -19,6 +19,7 @@ import '../features/matching/alias_dictionary.dart';
 import '../features/pricing/price_book.dart';
 import '../features/matching/matcher.dart';
 import '../features/matching/receipt_models.dart';
+import '../features/geofence/warehouse_directory.dart';
 import '../features/matching/receipt_parser.dart';
 import '../features/roasts/frank.dart';
 import '../features/scoring/verdict_engine.dart';
@@ -173,6 +174,16 @@ final priceBookProvider = FutureProvider<PriceBook>((ref) async {
     guide: guide,
     learned: {for (final r in learned) r.normalizedName: r.price},
   );
+});
+
+/// Every US + Canadian warehouse, bundled — powers "which warehouse am I
+/// at?" today and arrival prompts at M3. Never fetched at runtime.
+final warehouseDirectoryProvider =
+    FutureProvider<WarehouseDirectory>((ref) async {
+  final json = jsonDecode(
+          await rootBundle.loadString('assets/costco_locations.json'))
+      as Map<String, dynamic>;
+  return WarehouseDirectory.fromJson(json);
 });
 
 final aliasDictionaryProvider = FutureProvider<AliasDictionary>((ref) async {

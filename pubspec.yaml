@@ -27,6 +27,10 @@ dependencies:
   # Android OCR: wire ML Kit natively at Android bring-up.
   image_picker: ^1.1.2
 
+  # "Which warehouse am I at?" — one-shot foreground position, only when
+  # the user taps to ask. No background location, no tracking.
+  geolocator: ^13.0.0
+
   # List dictation — uses the OS speech recognizer (on-device where the OS
   # supports it; Apple may route to its servers on older devices).
   speech_to_text: ^7.0.0

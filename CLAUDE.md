@@ -83,11 +83,14 @@ receipts before trusting the parser (open item #1).
 
 ## Open items
 1. Real receipt corpus for parser fixtures.
-2. `assets/costco_locations.json` — compile once from Costco's public
-   locator (~600 US warehouses); never scrape at runtime. Then real geofence
-   registration (nearest 20, ~250 m radius) replaces SIMULATE button.
-3. Share-card image generation (score + verdict stamp + Frank quote).
+2. Background arrival prompts (M3): `assets/costco_locations.json` now holds
+   724 real US+CA warehouses (owner CSV geocoded via US Census + Nominatim,
+   ODbL attribution in Settings; 8 unresolved, 23 city-level `approx`).
+   `WarehouseDirectory.nearest()` is fence-registration-ready; the start-trip
+   screen's tap-to-locate uses it today (foreground, one-shot only).
+3. Share-card image generation (score + verdict stamp + quote).
 4. App name/trademark check before store submission.
+5. Android bring-up: SDK wizard, ML Kit OCR via platform channel, device QA.
 
 ## Toolchain
 Flutter SDK at `~/development/flutter` (add `~/development/flutter/bin` to

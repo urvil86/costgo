@@ -5,17 +5,66 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../core/theme/news_theme.dart';
 import '../game/game_controller.dart';
 import 'settings_screen.dart';
 import 'widgets.dart';
 
-class StartTripScreen extends ConsumerWidget {
+class StartTripScreen extends ConsumerStatefulWidget {
   const StartTripScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<StartTripScreen> createState() => _StartTripScreenState();
+}
+
+class _StartTripScreenState extends ConsumerState<StartTripScreen> {
+  /// Resolved "COSTCO TAMPA, FL · 0.4 MI AWAY", or a graceful shrug.
+  String? _whereabouts;
+  bool _locating = false;
+
+  /// One-shot, foreground, only on tap — never background, never stored.
+  Future<void> _locate() async {
+    if (_locating) return;
+    setState(() => _locating = true);
+    try {
+      var permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        setState(
+            () => _whereabouts = 'NO LOCATION — NO PROBLEM. CARRY ON.');
+        return;
+      }
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+            accuracy: LocationAccuracy.medium,
+            timeLimit: Duration(seconds: 10)),
+      );
+      final directory = await ref.read(warehouseDirectoryProvider.future);
+      final hit = directory.nearestTo(position.latitude, position.longitude);
+      if (hit == null) {
+        setState(() => _whereabouts = 'NO WAREHOUSES ON FILE.');
+        return;
+      }
+      final miles = hit.miles < 10
+          ? hit.miles.toStringAsFixed(1)
+          : hit.miles.toStringAsFixed(0);
+      setState(() => _whereabouts =
+          'COSTCO ${hit.warehouse.label} · $miles MI AWAY');
+    } catch (_) {
+      setState(
+          () => _whereabouts = "COULDN'T GET A FIX. THE MISSION PROCEEDS.");
+    } finally {
+      if (mounted) setState(() => _locating = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final game = ref.watch(gameProvider);
     final ctrl = ref.read(gameProvider.notifier);
     final settings = ref.watch(settingsProvider);
@@ -58,6 +107,33 @@ class StartTripScreen extends ConsumerWidget {
                       'Every dollar over costs you.',
                       style: News.mono(12,
                           color: NewsInk.grayFaint, height: 1.5)),
+                  const SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: _locate,
+                    child: Row(
+                      children: [
+                        Icon(
+                            _whereabouts == null
+                                ? Icons.location_searching_rounded
+                                : Icons.location_on_rounded,
+                            size: 14,
+                            color: NewsInk.mustard),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            _locating
+                                ? 'TRIANGULATING…'
+                                : _whereabouts ??
+                                    'WHICH WAREHOUSE? TAP TO CHECK',
+                            style: News.mono(10,
+                                color: NewsInk.mustard,
+                                weight: FontWeight.w700,
+                                spacing: 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   Container(
                     color: NewsInk.paper,
