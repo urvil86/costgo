@@ -493,6 +493,36 @@ class GameController extends Notifier<GameState> {
 
   void setSnapping(bool v) => state = state.copyWith(snapping: v);
 
+  /// A receipt arrived via the share sheet ("Copy to Cost-Go"). Drop straight
+  /// into a scan: set up a round (reusing the chosen sport + last budget),
+  /// jump to the scan screen, and parse the OCR'd text. The user lands on the
+  /// decoded rows to reclassify and sign — no live-trip step needed, since
+  /// they've already shopped. Returns an error string if unscoreable.
+  Future<String?> ingestSharedReceiptText(String ocrText) async {
+    final settings = ref.read(settingsProvider);
+    _ticker?.cancel();
+    state = state.copyWith(
+      screen: GameScreen.scan,
+      sport: settings.sport,
+      tripStart: DateTime.now(),
+      elapsed: Duration.zero,
+      checked: {},
+      temptDeck: [],
+      temptChoices: {},
+      hotDog: false,
+      scanned: false,
+      snapping: false,
+      parsedRows: [],
+      cartItems: [],
+      scanWarnings: [],
+      clearScore: true,
+      mulliganUsed: false,
+      frankQuote: '',
+    );
+    final listItems = ref.read(listItemsProvider).valueOrNull ?? [];
+    return ingestOcrText(ocrText, listItems);
+  }
+
   /// Tap a decoded row to reclassify planned ↔ unplanned. This is both the
   /// mis-match fix and the whole mechanic of freestyle rounds (no list:
   /// everything arrives unplanned, you claim what you meant to buy).

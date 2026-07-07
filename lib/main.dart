@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'core/theme/news_theme.dart';
+import 'features/capture/ocr_service.dart';
+import 'features/capture/shared_receipt.dart';
 import 'game/game_controller.dart';
 import 'ui/brand.dart';
 import 'ui/front_page.dart';
@@ -12,6 +14,8 @@ import 'ui/scan_screen.dart';
 import 'ui/start_trip_screen.dart';
 import 'ui/stats_screen.dart';
 import 'ui/trip_screen.dart';
+
+final _navigatorKey = GlobalKey<NavigatorState>();
 
 void main() {
   runApp(const ProviderScope(child: CostGoApp()));
@@ -26,19 +30,108 @@ class CostGoApp extends StatelessWidget {
       title: 'Cost-Go',
       theme: buildNewsTheme(),
       debugShowCheckedModeBanner: false,
+      navigatorKey: _navigatorKey,
       home: const _Root(),
     );
   }
 }
 
 /// Splash → onboarding (first launch) → shell. Trip flow screens take over
-/// the shell while a round is in progress.
-class _Root extends ConsumerWidget {
+/// the shell while a round is in progress. Also the entry point for receipts
+/// shared in from other apps ("Copy to Cost-Go").
+class _Root extends ConsumerStatefulWidget {
   const _Root();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_Root> createState() => _RootState();
+}
+
+class _RootState extends ConsumerState<_Root> {
+  // Held for the life of the app so the native share handler stays wired.
+  // ignore: unused_field
+  late final SharedReceiptChannel _shared;
+
+  /// A shared receipt can land before settings finish loading; hold it until
+  /// we're onboarded, then process once.
+  String? _pendingSharedPath;
+  bool _processing = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _shared = SharedReceiptChannel((path) {
+      if (mounted) setState(() => _pendingSharedPath = path);
+    });
+  }
+
+  Future<void> _processSharedReceipt(String path) async {
+    _processing = true;
+    final ocr = VisionOcrService();
+    try {
+      String text;
+      try {
+        text = await ocr.recognizeFromImagePath(path);
+      } on OcrUnavailable {
+        _sharedError('SCANNING NOT READY',
+            'Text recognition isn\'t available here. Open the app and paste '
+            'the receipt text instead.');
+        return;
+      } catch (e) {
+        _sharedError('COULDN\'T READ THAT',
+            'That file couldn\'t be read ($e). Try a clearer image, or paste '
+            'the text in the app.');
+        return;
+      }
+      if (text.trim().isEmpty) {
+        _sharedError('NO TEXT FOUND',
+            'No readable text in that file. Try a sharper receipt image.');
+        return;
+      }
+      final err =
+          await ref.read(gameProvider.notifier).ingestSharedReceiptText(text);
+      if (err != null) _sharedError('COULDN\'T SCORE THAT', err);
+    } finally {
+      ocr.dispose();
+      _processing = false;
+    }
+  }
+
+  void _sharedError(String title, String body) {
+    final ctx = _navigatorKey.currentContext;
+    if (ctx == null) return;
+    showDialog<void>(
+      context: ctx,
+      builder: (context) => AlertDialog(
+        backgroundColor: NewsInk.paper,
+        shape: const RoundedRectangleBorder(),
+        title: Text(title, style: News.anton(18, color: NewsInk.red)),
+        content: Text(body, style: News.mono(12, height: 1.5)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text('OK', style: News.kicker(11, color: NewsInk.red)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final settings = ref.watch(settingsProvider);
+
+    // Once loaded + onboarded, drain any receipt shared into the app.
+    if (settings.loaded &&
+        settings.onboarded &&
+        _pendingSharedPath != null &&
+        !_processing) {
+      final path = _pendingSharedPath!;
+      _pendingSharedPath = null;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _processSharedReceipt(path);
+      });
+    }
+
     if (!settings.loaded) {
       // Brand splash while persisted settings load (a few frames).
       return const Scaffold(
