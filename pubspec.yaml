@@ -1,0 +1,65 @@
+name: cartgolf
+description: >-
+  Cost-Go — score your Costco trips like sport. THE DAILY CART reports the
+  damage. All data stays on your device: no accounts, no cloud, no analytics.
+publish_to: "none"
+version: 0.2.0+2
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State
+  flutter_riverpod: ^2.6.1
+
+  # Local storage — everything on-device
+  drift: ^2.28.0
+  drift_flutter: ^0.2.4
+  path_provider: ^2.1.5
+  path: ^1.9.0
+
+  # Receipt capture. OCR is Apple Vision via platform channel on iOS
+  # (see ios/Runner/AppDelegate.swift) — ML Kit was dropped: no
+  # arm64-simulator slices, and the iOS 26 simulator no longer runs x86_64.
+  # Android OCR: wire ML Kit natively at Android bring-up.
+  image_picker: ^1.1.2
+
+  # M3: geofence entry/exit prompts
+  flutter_local_notifications: ^19.0.0
+  # geofence_service: evaluate vs native platform channels at M3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.28.0
+  build_runner: ^2.4.15
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/aliases.json
+    - assets/temptations.json
+    - assets/price_guide.json
+    - assets/costco_locations.json
+  fonts:
+    - family: Anton
+      fonts:
+        - asset: assets/fonts/Anton-Regular.ttf
+    - family: IBMPlexMono
+      fonts:
+        - asset: assets/fonts/IBMPlexMono-Regular.ttf
+        - asset: assets/fonts/IBMPlexMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexMono-Bold.ttf
+          weight: 700
+    - family: DMSerifDisplay
+      fonts:
+        - asset: assets/fonts/DMSerifDisplay-Italic.ttf
+          style: italic
+    - family: LibreBarcode39
+      fonts:
+        - asset: assets/fonts/LibreBarcode39ExtendedText-Regular.ttf

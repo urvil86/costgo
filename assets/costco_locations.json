@@ -1,0 +1,7 @@
+{
+  "_comment": "US Costco warehouse coordinates for arrival prompts (M3). NOT YET COMPILED — Costco's own locator API is bot-gated (HTTP 403, and scraping it violates their ToS); OpenStreetMap Overpass was overloaded (504) at build time. Compile once with the query below when Overpass is healthy, or license a POI dataset. The app must degrade gracefully while this list is empty: no location UI is shown at all.",
+  "_compile_with": "curl -s https://overpass-api.de/api/interpreter --data-urlencode 'data=[out:json][timeout:120];(node[\"shop\"=\"wholesale\"][\"name\"~\"Costco\"](24.0,-125.0,49.5,-66.0);way[\"shop\"=\"wholesale\"][\"name\"~\"Costco\"](24.0,-125.0,49.5,-66.0););out center tags;' | <map to schema below>",
+  "_attribution": "When compiled from OpenStreetMap: © OpenStreetMap contributors, ODbL — attribution must appear in Settings.",
+  "_schema": { "id": "string", "name": "string", "state": "US state code", "lat": 0.0, "lng": 0.0 },
+  "warehouses": []
+}
