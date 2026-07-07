@@ -39,6 +39,9 @@ colors, copy, animations, and scoring rules all come from it).
 - Rating EMA: `(rating*9 + max(0,strokes)*2)/10`, floor 0.
 - The $1.50 hot dog never counts. Gas and food-court receipts are never
   scored.
+- Freestyle rounds: empty list is allowed — every receipt item arrives
+  UNPLANNED and the user taps rows on the scan-results screen to flip
+  planned ↔ unplanned (same tap fixes OCR mis-matches on normal rounds).
 - Tones: savage (default) / deadpan / gentle — `lib/features/roasts/frank.dart`
   plus bespoke roasts in `assets/temptations.json`. NO mascot in UI copy:
   the voice is THE DAILY CART; the quote byline is the USER'S name.
