@@ -177,15 +177,24 @@ class TripScreen extends ConsumerWidget {
                   checked: game.checked.contains(it.id),
                   onTap: () => ctrl.toggleItem(it.id),
                 ),
-              // Temptations
+              // Temptations — the classic Costco impulse traps. These are
+              // NOT detected; they're a bit of fun. Tap only the ones that
+              // actually landed in your cart. (Scanning your real receipt
+              // later catches everything automatically.)
               Container(
                 color: NewsInk.red,
                 margin: const EdgeInsets.only(top: 16),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                child: Text('⚠ TEMPTATIONS SPOTTED IN YOUR CART',
+                child: Text('⚠ THE USUAL SUSPECTS',
                     style: News.kicker(11, color: NewsInk.paper)),
               ),
+              const SizedBox(height: 4),
+              Text(
+                  'Classic Costco traps. Did any actually get you? Tap it. '
+                  'Skip the rest — this is optional.',
+                  style:
+                      News.mono(10, color: NewsInk.gray, height: 1.4)),
               const SizedBox(height: 10),
               for (final (i, t) in game.temptDeck.indexed)
                 Padding(

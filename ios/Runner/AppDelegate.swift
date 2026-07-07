@@ -14,12 +14,20 @@ import Vision
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
 
-    // On-device OCR via Apple Vision — free, private, arm64-simulator-native.
+    // On-device OCR via Apple Vision — free, private, on-device.
     if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "CostGoOcr") {
-      let channel = FlutterMethodChannel(
-        name: "costgo/ocr", binaryMessenger: registrar.messenger())
-      channel.setMethodCallHandler(AppDelegate.handleOcr)
+      AppDelegate.registerOcr(messenger: registrar.messenger())
     }
+  }
+
+  /// Idempotent: safe to call from both the implicit-engine callback and the
+  /// SceneDelegate. Whichever runs first wins; the second is a harmless
+  /// re-attach of the same handler. Belt-and-suspenders because the
+  /// implicit-engine callback's timing in the scene-based template is
+  /// finicky, and a missing channel = silent scan failures.
+  static func registerOcr(messenger: FlutterBinaryMessenger) {
+    let channel = FlutterMethodChannel(name: "costgo/ocr", binaryMessenger: messenger)
+    channel.setMethodCallHandler(AppDelegate.handleOcr)
   }
 
   private static func handleOcr(_ call: FlutterMethodCall, result: @escaping FlutterResult) {

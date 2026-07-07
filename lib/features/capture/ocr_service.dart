@@ -18,18 +18,33 @@ abstract interface class OcrService {
   Future<String> recognizeFromImagePath(String imagePath);
 }
 
+/// Thrown when the platform OCR channel isn't wired up (unsupported platform,
+/// or the native channel failed to register). The UI catches this and routes
+/// the user to the always-available paste path.
+class OcrUnavailable implements Exception {
+  const OcrUnavailable(this.message);
+  final String message;
+  @override
+  String toString() => message;
+}
+
 class VisionOcrService implements OcrService {
   static const _channel = MethodChannel('costgo/ocr');
 
   @override
   Future<String> recognizeFromImagePath(String imagePath) async {
     if (!Platform.isIOS) {
-      throw UnsupportedError(
-          'OCR is iOS-only for now — use paste text or manual mode.');
+      throw const OcrUnavailable('OCR is iOS-only for now.');
     }
-    final text = await _channel
-        .invokeMethod<String>('recognizeText', {'path': imagePath});
-    return text ?? '';
+    try {
+      final text = await _channel
+          .invokeMethod<String>('recognizeText', {'path': imagePath});
+      return text ?? '';
+    } on MissingPluginException {
+      // The native channel never registered — treat as unavailable so the
+      // UI offers paste instead of surfacing a cryptic error.
+      throw const OcrUnavailable('OCR channel not registered.');
+    }
   }
 
   void dispose() {}

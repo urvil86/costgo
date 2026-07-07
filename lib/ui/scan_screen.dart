@@ -32,27 +32,79 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
     final ctrl = ref.read(gameProvider.notifier);
     if (ref.read(gameProvider).snapping) return;
     ctrl.setSnapping(true);
+    final ocr = VisionOcrService();
     try {
       final picker = ImagePicker();
       final segments = <String>[];
-      final ocr = VisionOcrService();
+      // Multi-shot only makes sense for the camera (long paper receipts).
+      // A gallery pick is a single screenshot — one and done.
+      final allowMultiShot = source == ImageSource.camera;
       while (true) {
         final shot =
             await picker.pickImage(source: source, imageQuality: 92);
-        if (shot == null) break;
-        segments.add(await ocr.recognizeFromImagePath(shot.path));
+        if (shot == null) break; // user cancelled the picker
+        final text = await ocr.recognizeFromImagePath(shot.path);
+        segments.add(text);
         if (!mounted) return;
+        if (!allowMultiShot) break;
         final more = await _askMoreSegments();
         if (more != true) break;
       }
-      ocr.dispose();
-      if (segments.isEmpty) return;
-      await _ingest(stitchSegments(segments));
+      if (segments.isEmpty) return; // cancelled before picking anything
+
+      final stitched = stitchSegments(segments);
+      if (stitched.trim().isEmpty) {
+        await _scanFailed(
+          'NO TEXT FOUND',
+          'The photo didn\'t have any readable text. Try a sharper, '
+              'flatter shot in better light — or paste the receipt text.',
+        );
+        return;
+      }
+      await _ingest(stitched);
+    } on OcrUnavailable {
+      await _scanFailed(
+        'SCANNING NOT READY',
+        'On-device text recognition isn\'t available here. Paste the '
+            'receipt text instead — same result.',
+      );
     } catch (e) {
-      _toast('Scanner fell over: $e');
+      await _scanFailed(
+        'SCANNER HICCUP',
+        'Couldn\'t read that image ($e). Try another photo, or paste the '
+            'receipt text.',
+      );
     } finally {
+      ocr.dispose();
       if (mounted) ref.read(gameProvider.notifier).setSnapping(false);
     }
+  }
+
+  /// A blocking, unmissable failure card that always offers the paste
+  /// fallback — no scan path ever dead-ends into "nothing happened".
+  Future<void> _scanFailed(String title, String body) async {
+    if (!mounted) return;
+    final paste = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: NewsInk.paper,
+        shape: const RoundedRectangleBorder(),
+        title: Text(title, style: News.anton(18, color: NewsInk.red)),
+        content: Text(body, style: News.mono(12, height: 1.5)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text('CLOSE', style: News.kicker(11)),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child:
+                Text('PASTE TEXT', style: News.kicker(11, color: NewsInk.red)),
+          ),
+        ],
+      ),
+    );
+    if (paste == true) await _pasteText();
   }
 
   Future<bool?> _askMoreSegments() => showDialog<bool>(
@@ -114,16 +166,7 @@ class _ScanScreenState extends ConsumerState<ScanScreen> {
     final error = await ref
         .read(gameProvider.notifier)
         .ingestOcrText(ocrText, listItems);
-    if (error != null) _toast(error);
-  }
-
-  void _toast(String msg) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      backgroundColor: NewsInk.black,
-      shape: const RoundedRectangleBorder(),
-      content: Text(msg, style: News.mono(12, color: NewsInk.paper)),
-    ));
+    if (error != null) await _scanFailed('COULDN\'T SCORE THAT', error);
   }
 
   @override

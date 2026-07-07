@@ -2,18 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Only used when you tap to check which warehouse you’re at. Your location is never stored or sent anywhere.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Dictate list items instead of typing them. Audio is processed by the system speech recognizer and never stored by Cost-Go.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Turns your spoken list items into text.</string>
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>Cost-Go photographs your paper receipt to score the trip. Images are processed on-device and never leave your phone.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Pick a receipt photo or digital-receipt screenshot to score the trip. Everything stays on your phone.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -36,8 +24,20 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Cost-Go photographs your paper receipt to score the trip. Images are processed on-device and never leave your phone.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Only used when you tap to check which warehouse you’re at. Your location is never stored or sent anywhere.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dictate list items instead of typing them. Audio is processed by the system speech recognizer and never stored by Cost-Go.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Pick a receipt photo or digital-receipt screenshot to score the trip. Everything stays on your phone.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Turns your spoken list items into text.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
